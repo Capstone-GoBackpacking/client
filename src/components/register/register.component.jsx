@@ -26,7 +26,7 @@ const Register = () => {
           />
 
           <div className="-space-y-px rounded-md">
-            <div className="lg:flex pb-4">
+            <div className="lg:flex">
               <div className="lg:w-1/2 lg:pr-4 pb-4">
                 <label for="firstName" className="sr-only">
                   First Name
