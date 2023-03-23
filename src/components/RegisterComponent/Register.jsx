@@ -6,7 +6,7 @@ const Register = () => {
     <div className="flex h-screen justify-center">
       <img
         src={heroImage}
-        className="register_hero-image w-2/4 h-screen hidden lg:block"
+        className="w-2/4 h-screen hidden lg:block"
         alt="image-hero"
       />
       <div className="w-screen lg:w-2/4 lg:px-20 px-8">
