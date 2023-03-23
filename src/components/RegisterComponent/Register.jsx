@@ -6,10 +6,10 @@ const Register = () => {
     <div className="flex h-screen justify-center">
       <img
         src={heroImage}
-        className="register_hero-image w-2/4 h-screen"
+        className="register_hero-image w-2/4 h-screen hidden lg:block"
         alt="image-hero"
       />
-      <div className="w-2/4 px-20">
+      <div className="w-screen lg:w-2/4 lg:px-20 px-8">
         <div className="mt-10 mb-14">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">
             Welcome to
@@ -26,10 +26,10 @@ const Register = () => {
           />
 
           <div className="-space-y-px rounded-md">
-            <div className="flex pb-4">
-              <div className="w-1/2 pr-4">
+            <div className="lg:flex pb-4">
+              <div className="lg:w-1/2 lg:pr-4 pb-4">
                 <label for="firstName" className="sr-only">
-                  Email
+                  First Name
                 </label>
                 <input
                   id="firstName"
@@ -40,9 +40,9 @@ const Register = () => {
                   placeholder="First Name"
                 />
               </div>
-              <div className="w-1/2">
+              <div className="lg:w-1/2">
                 <label for="lastName" className="sr-only">
-                  Email
+                  Last Name
                 </label>
                 <input
                   id="lastName"
