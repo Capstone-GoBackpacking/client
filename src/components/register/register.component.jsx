@@ -1,7 +1,8 @@
 import React from "react"
 import heroImage from "../../assets/images/hero-image.png"
+import { Link } from "react-router-dom"
 
-const Register = () => {
+const Register = ({ data, onInput, onSubmit }) => {
   return (
     <div className="flex h-screen justify-center">
       <img
@@ -14,112 +15,127 @@ const Register = () => {
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">
             Welcome to
           </h2>
-          <h2 className="text-[#6C63FF] text-3xl">
+          <h2 className="text-primary text-3xl">
             Go Backpacking
           </h2>
         </div>
-        <form action="#" method="POST">
-          <input
-            type="hidden"
-            name="remember"
-            value="true"
-          />
-
-          <div className="-space-y-px rounded-md">
-            <div className="lg:flex">
-              <div className="lg:w-1/2 lg:pr-4 pb-4">
-                <label for="firstName" className="sr-only">
-                  First Name
-                </label>
-                <input
-                  id="firstName"
-                  name="firstName"
-                  type="text"
-                  required
-                  className="relative block w-full outline-none rounded-md text-black py-3 px-3 bg-[#F2F2F2] placeholder:text-black focus:z-10 sm:text-sm sm:leading-6"
-                  placeholder="First Name"
-                />
-              </div>
-              <div className="lg:w-1/2 pb-4">
-                <label for="lastName" className="sr-only">
-                  Last Name
-                </label>
-                <input
-                  id="lastName"
-                  name="lastName"
-                  type="text"
-                  required
-                  className="relative block w-full outline-none rounded-md text-black py-3 px-3 bg-[#F2F2F2] placeholder:text-black focus:z-10 sm:text-sm sm:leading-6"
-                  placeholder="Last Name"
-                />
-              </div>
-            </div>
-            <div className="pb-4">
+        <div className="-space-y-px rounded-md">
+          <div className="lg:flex">
+            <div className="lg:w-1/2 lg:pr-4 pb-4">
               <label
-                for="email-address"
+                htmlFor="firstName"
                 className="sr-only"
               >
-                Email
+                First Name
               </label>
               <input
-                id="email-address"
-                name="email"
-                type="email"
-                autocomplete="email"
+                id="firstName"
+                name="firstName"
+                type="text"
                 required
-                className="relative block w-full outline-none rounded-md text-black py-3 px-3 bg-[#F2F2F2] placeholder:text-black focus:z-10 sm:text-sm sm:leading-6"
-                placeholder="Email address"
+                className="relative block w-full outline-none rounded-md text-black py-3 px-3 bg-gray-primary placeholder:text-black focus:z-10 sm:text-sm sm:leading-6"
+                placeholder="First Name"
+                onChange={(e) =>
+                  onInput(e.target.name, e.target.value)
+                }
+                value={data.firstName}
               />
             </div>
-            <div className="pb-4">
-              <label
-                for="email-address"
-                className="sr-only"
-              >
-                Password
+            <div className="lg:w-1/2">
+              <label htmlFor="lastName" className="sr-only">
+                Last Name
               </label>
               <input
-                id="password"
-                name="password"
-                type="password"
+                id="lastName"
+                name="lastName"
+                type="text"
                 required
-                className="relative block w-full outline-none rounded-md text-black py-3 px-3 bg-[#F2F2F2] placeholder:text-black focus:z-10 sm:text-sm sm:leading-6"
-                placeholder="Password"
-              />
-            </div>
-            <div className="pb-4">
-              <label for="password" className="sr-only">
-                Confirm Password
-              </label>
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                required
-                className="relative block w-full outline-none rounded-md text-black py-3 px-3 bg-[#F2F2F2] placeholder:text-black focus:z-10 sm:text-sm sm:leading-6"
-                placeholder="Confirm Password"
+                className="relative block w-full outline-none rounded-md text-black py-3 px-3 bg-gray-primary placeholder:text-black focus:z-10 sm:text-sm sm:leading-6"
+                placeholder="Last Name"
+                onChange={(e) =>
+                  onInput(e.target.name, e.target.value)
+                }
+                value={data.lastName}
               />
             </div>
           </div>
-
-          <div className="my-10">
-            <button
-              type="submit"
-              className="group relative flex w-full justify-center rounded-md bg-[#6C63FF] py-4 px-3 text-lg font-medium tracking-wider text-white hover:opacity-90 duration-300"
+          <div className="pb-4">
+            <label
+              htmlFor="email-address"
+              className="sr-only"
             >
-              Sign up
-            </button>
+              Email
+            </label>
+            <input
+              id="email-address"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              className="relative block w-full outline-none rounded-md text-black py-3 px-3 bg-gray-primary placeholder:text-black focus:z-10 sm:text-sm sm:leading-6"
+              placeholder="Email address"
+              onChange={(e) =>
+                onInput(e.target.name, e.target.value)
+              }
+              value={data.email}
+            />
           </div>
-          <div className="flex justify-center text-sm">
-            <span>
-              Already have an account?
-              <a className="text-[#6C63FF]" href="#">
-                {" "}
-                Login
-              </a>
-            </span>
+          <div className="pb-4">
+            <label
+              htmlFor="email-address"
+              className="sr-only"
+            >
+              Password
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              required
+              className="relative block w-full outline-none rounded-md text-black py-3 px-3 bg-gray-primary placeholder:text-black focus:z-10 sm:text-sm sm:leading-6"
+              placeholder="Password"
+              onChange={(e) =>
+                onInput(e.target.name, e.target.value)
+              }
+              value={data.password}
+            />
           </div>
-        </form>
+          <div className="pb-4">
+            <label htmlFor="password" className="sr-only">
+              Confirm Password
+            </label>
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              required
+              className="relative block w-full outline-none rounded-md text-black py-3 px-3 bg-gray-primary placeholder:text-black focus:z-10 sm:text-sm sm:leading-6"
+              placeholder="Confirm Password"
+              onChange={(e) =>
+                onInput(e.target.name, e.target.value)
+              }
+              value={data.confirmPassword}
+            />
+          </div>
+        </div>
+
+        <div className="my-10">
+          <button
+            type="submit"
+            className="group relative flex w-full justify-center rounded-md bg-primary py-4 px-3 text-lg font-medium tracking-wider text-white hover:opacity-90 duration-300"
+            onClick={() => onSubmit()}
+          >
+            Sign up
+          </button>
+        </div>
+        <div className="flex justify-center text-sm">
+          <span>
+            Already have an account?{" "}
+            <Link to="/login" className="text-primary">
+              Login
+            </Link>
+          </span>
+        </div>
       </div>
     </div>
   )
