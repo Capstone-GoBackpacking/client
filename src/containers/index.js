@@ -1,4 +1,7 @@
-import RegisterContainer from "./register/Register.container"
-import HobbiesContainer from "./hobbies/Hobbies.container"
+import RegisterContainer from "./register/register.container"
+import HobbiesContainer from "./hobbies/hobbies.container"
 
-export { RegisterContainer, HobbiesContainer }
+export {
+  RegisterContainer,
+  HobbiesContainer
+}

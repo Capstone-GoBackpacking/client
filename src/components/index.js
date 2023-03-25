@@ -1,4 +1,7 @@
-import Register from "./register/Register.component"
-import Hobbies from "./hobbies/Hobbies.component"
+import Register from "./register/register.component"
+import Hobby from "./hobby/hobby.component"
 
-export { Register, Hobbies }
+export {
+  Register,
+  Hobby
+}
