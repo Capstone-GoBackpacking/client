@@ -1,6 +1,7 @@
-import RegisterContainer from './register/register.container'
-import LoginContainer from './login/login.container'
+import RegisterContainer from "./register/register.container"
+import HobbiesContainer from "./hobbies/hobbies.container"
+
 export {
   RegisterContainer,
-  LoginContainer
+  HobbiesContainer
 }
