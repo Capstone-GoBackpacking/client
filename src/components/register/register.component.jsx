@@ -40,7 +40,7 @@ const Register = () => {
                   placeholder="First Name"
                 />
               </div>
-              <div className="lg:w-1/2">
+              <div className="lg:w-1/2 pb-4">
                 <label for="lastName" className="sr-only">
                   Last Name
                 </label>
