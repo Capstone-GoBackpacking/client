@@ -22,7 +22,10 @@ const Register = ({ data, onInput, onSubmit }) => {
         <div className="-space-y-px rounded-md">
           <div className="lg:flex">
             <div className="lg:w-1/2 lg:pr-4 pb-4">
-              <label htmlFor="firstName" className="sr-only">
+              <label
+                htmlFor="firstName"
+                className="sr-only"
+              >
                 First Name
               </label>
               <input
@@ -32,7 +35,9 @@ const Register = ({ data, onInput, onSubmit }) => {
                 required
                 className="relative block w-full outline-none rounded-md text-black py-3 px-3 bg-gray-primary placeholder:text-black focus:z-10 sm:text-sm sm:leading-6"
                 placeholder="First Name"
-                onChange={e => onInput(e.target.name, e.target.value)}
+                onChange={(e) =>
+                  onInput(e.target.name, e.target.value)
+                }
                 value={data.firstName}
               />
             </div>
@@ -47,7 +52,9 @@ const Register = ({ data, onInput, onSubmit }) => {
                 required
                 className="relative block w-full outline-none rounded-md text-black py-3 px-3 bg-gray-primary placeholder:text-black focus:z-10 sm:text-sm sm:leading-6"
                 placeholder="Last Name"
-                onChange={e => onInput(e.target.name, e.target.value)}
+                onChange={(e) =>
+                  onInput(e.target.name, e.target.value)
+                }
                 value={data.lastName}
               />
             </div>
@@ -67,7 +74,9 @@ const Register = ({ data, onInput, onSubmit }) => {
               required
               className="relative block w-full outline-none rounded-md text-black py-3 px-3 bg-gray-primary placeholder:text-black focus:z-10 sm:text-sm sm:leading-6"
               placeholder="Email address"
-              onChange={e => onInput(e.target.name, e.target.value)}
+              onChange={(e) =>
+                onInput(e.target.name, e.target.value)
+              }
               value={data.email}
             />
           </div>
@@ -85,7 +94,9 @@ const Register = ({ data, onInput, onSubmit }) => {
               required
               className="relative block w-full outline-none rounded-md text-black py-3 px-3 bg-gray-primary placeholder:text-black focus:z-10 sm:text-sm sm:leading-6"
               placeholder="Password"
-              onChange={e => onInput(e.target.name, e.target.value)}
+              onChange={(e) =>
+                onInput(e.target.name, e.target.value)
+              }
               value={data.password}
             />
           </div>
@@ -100,7 +111,9 @@ const Register = ({ data, onInput, onSubmit }) => {
               required
               className="relative block w-full outline-none rounded-md text-black py-3 px-3 bg-gray-primary placeholder:text-black focus:z-10 sm:text-sm sm:leading-6"
               placeholder="Confirm Password"
-              onChange={e => onInput(e.target.name, e.target.value)}
+              onChange={(e) =>
+                onInput(e.target.name, e.target.value)
+              }
               value={data.confirmPassword}
             />
           </div>
@@ -117,8 +130,8 @@ const Register = ({ data, onInput, onSubmit }) => {
         </div>
         <div className="flex justify-center text-sm">
           <span>
-            Already have an account?{' '}
-            <Link to='/login' className="text-primary">
+            Already have an account?{" "}
+            <Link to="/login" className="text-primary">
               Login
             </Link>
           </span>
