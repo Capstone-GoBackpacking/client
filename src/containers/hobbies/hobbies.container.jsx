@@ -46,8 +46,8 @@ const HobbiesContainer = () => {
   return (
     <div className="flex flex-col items-center">
       <div className="mb-10 flex flex-col items-center">
-        <h2>Add Your Interests</h2>
-        <span>Please select at least one</span>
+        <h2 className="font-bold text-3xl">Add Your Interests</h2>
+        <span className="text-stone-500">Please select at least one</span>
       </div>
       <div className="border-solid border-[1px] border-[#eeeeee] w-4/5 mb-10"></div>
       <div className="flex flex-wrap w-3/4">
