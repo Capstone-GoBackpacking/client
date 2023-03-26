@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom"
-import { ProfileContainer } from "./containers"
+import SideBar from "./containers/sidebar/sidebar.container"
 
 function App() {
   return (
     <div>
       <Outlet />
-      <ProfileContainer />
+      <SideBar />
     </div>
   )
 }

@@ -4,9 +4,17 @@ export const RegisterRoute = 'register'
 export const HobbiesRoute = 'hobbies'
 export const CreateTripStepsRoute = {
   name: 'create-trip',
-  steps: {
+  childs: {
     type: 'type',
     location: 'location',
     detail: 'detail'
   }
 }
+export const ProfileRoute = {
+  name: 'profile',
+  childs: {
+    images: 'images',
+    trips: 'trips',
+    shop: 'shop'
+  }
+} 

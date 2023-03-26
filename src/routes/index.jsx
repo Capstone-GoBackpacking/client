@@ -7,14 +7,19 @@ import {
   RootRoute,
   LoginRoute,
   RegisterRoute,
-  HobbiesRoute
+  HobbiesRoute,
+  ProfileRoute
 } from './route-name'
 import {
   Login,
-  Register
+  Register,
+  Hobbies,
+  Profile
 } from '../pages'
 import App from '../App'
-import Hobbies from '../pages/hobbies/hobbies.page'
+import {
+  MainLayout
+} from '../layouts'
 
 export default createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +27,9 @@ export default createBrowserRouter(
       <Route path={LoginRoute} element={<Login />} />
       <Route path={RegisterRoute} element={<Register />} />
       <Route path={HobbiesRoute} element={<Hobbies />} />
+      <Route element={<MainLayout />}>
+        <Route path={ProfileRoute.name} element={<Profile />} />
+      </Route>
     </Route>
   )
 )
