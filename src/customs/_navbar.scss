@@ -1,0 +1,21 @@
+#profile {
+  .p-tabmenu {
+    .p-tabmenu-nav {
+      border: none;
+      justify-content: center;
+
+      li {
+        &.p-highlight a {
+          display: flex;
+          gap: 10px;
+          color: $primary;
+        }
+
+        a {
+          display: flex;
+          gap: 10px;
+        }
+      }
+    }
+  }
+}

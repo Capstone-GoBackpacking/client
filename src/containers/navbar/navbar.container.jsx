@@ -1,9 +1,9 @@
-import { NavItem } from "../../components"
+import { TabMenu } from 'primereact/tabmenu'
 
 const NavbarContainer = ({ data }) => {
   return (
-    <div className="flex gap-10 items-center justify-center">
-      {data.map(item => <NavItem key={item.index} name={item.name} Icon={item.icon} path={item.path} />)}
+    <div>
+      <TabMenu model={data} />
     </div>
   )
 }

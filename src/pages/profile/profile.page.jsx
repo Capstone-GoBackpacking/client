@@ -1,35 +1,34 @@
 import { FaCarSide } from 'react-icons/fa'
 import { AiFillCamera, AiTwotoneShop } from 'react-icons/ai'
 import {
-  ProfileInfoContainer,
-  NavbarContainer
+  ProfileInfo,
+  Navbar
 } from '../../containers'
+import { ProfileRoute } from '../../routes/route-name.js'
 
 const Profile = () => {
   const navItems = [
     {
-      index: 1,
-      name: 'My Trips',
+      label: 'My Trips',
       icon: FaCarSide,
-      path: 'my-trips'
+      url: `${ProfileRoute.name}/${ProfileRoute.childs.trips}`
     },
     {
-      index: 2,
-      name: 'Images',
+      label: 'Images',
       icon: AiFillCamera,
-      path: 'images'
+      url: `${ProfileRoute.name}/${ProfileRoute.childs.images}`
     },
     {
-      index: 3,
-      name: 'Shop',
+      label: 'Shop',
       icon: AiTwotoneShop,
-      path: 'shop'
+      url: `${ProfileRoute.name}/${ProfileRoute.childs.shop}`
     }
   ]
+
   return (
-    <div className="w-9/12 m-auto">
-      <ProfileInfoContainer />
-      <NavbarContainer data={navItems} />
+    <div id="profile" className="w-9/12 m-auto">
+      <ProfileInfo />
+      <Navbar data={navItems} />
     </div>
   )
 }
