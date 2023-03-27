@@ -16,11 +16,9 @@ import {
   Hobbies,
   Profile,
   ProfileImages
-} from '../pages'
+} from 'src/pages'
 import App from '../App'
-import {
-  MainLayout
-} from '../layouts'
+import { MainLayout } from 'src/layouts'
 
 export default createBrowserRouter(
   createRoutesFromElements(

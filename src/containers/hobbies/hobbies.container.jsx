@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Hobby } from '../../components'
+import { Hobby } from "src/components"
 
 const HobbiesContainer = () => {
   const [checked, setChecked] = useState([])

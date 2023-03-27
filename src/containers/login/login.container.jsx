@@ -1,5 +1,5 @@
 import React from "react"
-import Login from '../../components/login/login.component'
+import { Login } from "src/components"
 
 const LoginContainer = () => {
   return <Login />

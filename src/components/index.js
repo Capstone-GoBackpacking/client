@@ -3,11 +3,13 @@ import Hobby from "./hobby/hobby.component"
 import Button from './button/button.component'
 import SideBarOption from './sideBarOption/sideBarOption.component'
 import StatusBox from './statusBox/statusBox.component'
+import Login from "./login/login.component"
 
 export {
   Register,
   Hobby,
   Button,
   SideBarOption,
-  StatusBox
+  StatusBox,
+  Login
 }

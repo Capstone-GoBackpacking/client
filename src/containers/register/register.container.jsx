@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Register } from '../../components'
+import { Register } from "src/components"
 
 const RegisterContainer = () => {
   const [registerData, setRegisterData] = useState({

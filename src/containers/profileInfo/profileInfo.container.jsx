@@ -1,6 +1,6 @@
-import avatar from '../../assets/images/avatar.png'
 import { AiFillStar } from 'react-icons/ai'
-import { Button } from '../../components'
+import { Button } from 'src/components'
+import avatar from 'src/assets/images/avatar.png'
 
 const ProfileInfoContainer = () => {
   return (

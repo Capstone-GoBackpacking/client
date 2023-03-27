@@ -3,8 +3,8 @@ import { AiFillCamera, AiTwotoneShop } from 'react-icons/ai'
 import {
   ProfileInfo,
   Navbar
-} from '../../containers'
-import { ProfileRoute } from '../../routes/route-name.js'
+} from 'src/containers'
+import { ProfileRoute } from 'src/routes/route-name'
 import { Outlet } from 'react-router-dom'
 
 const Profile = () => {

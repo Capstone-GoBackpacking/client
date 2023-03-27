@@ -1,4 +1,4 @@
-import HobbiesContainer from "../../containers/hobbies/hobbies.container";
+import { HobbiesContainer } from "src/containers"
 
 function Hobbies() {
   return (
