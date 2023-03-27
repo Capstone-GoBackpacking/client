@@ -3,7 +3,7 @@ import SideBar from "../containers/sidebar/sidebar.container"
 
 const MainLayout = () => {
   return (
-    <div className="flex w-full">
+    <div id="main-layout" className="flex w-full">
       <SideBar />
       <div className="flex-1">
         <Outlet />

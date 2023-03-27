@@ -1,0 +1,18 @@
+#main-layout {
+  .p-panelmenu {
+    .p-panelmenu-header {
+      &.p-highlight {
+        .p-panelmenu-header-link {
+          border: none;
+          background: none;
+          color: $primary;
+        }
+      }      
+
+      .p-panelmenu-header-link {
+        border: none;
+        background: none;
+      }
+    }
+  }
+}

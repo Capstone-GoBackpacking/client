@@ -6,40 +6,32 @@ import {
   HiShoppingCart,
   HiLocationMarker
 } from 'react-icons/hi'
-import { SideBarOption } from '../../components'
+import { PanelMenu } from 'primereact/panelmenu'
 
 const SideBar = () => {
   const sidebarOptions = [
     {
-      index: 1,
-      name: 'Home',
-      path: '/',
+      label: 'Home',
       icon: IoIosHome
     },
     {
-      index: 2,
-      name: 'Trips',
-      path: '/trips',
+      label: 'Trips',
       icon: FaWalking
     },
     {
-      index: 3,
-      name: 'Market',
-      path: '/market',
+      label: 'Market',
       icon: HiShoppingCart
     },
     {
-      index: 4,
-      name: 'Locations',
-      path: '/locations',
+      label: 'Locations',
       icon: HiLocationMarker
     }
   ]
 
   return (
-    <div className="w-255p gap-y-5 flex flex-col pl-5 border-r h-screen">
-      {sidebarOptions.map(option => <SideBarOption key={option.index} name={option.name} path={option.path} Icon={option.icon} />)}
-    </div>
+    <>
+      <PanelMenu model={sidebarOptions} />
+    </>
   )
 }
 
