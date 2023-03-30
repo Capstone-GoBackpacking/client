@@ -15,7 +15,8 @@ import {
   Register,
   Hobbies,
   Profile,
-  ProfileImages
+  ProfileImages,
+  ProfileMyTrips
 } from 'src/pages'
 import App from '../App'
 import { MainLayout } from 'src/layouts'
@@ -29,6 +30,7 @@ export default createBrowserRouter(
       <Route element={<MainLayout />}>
         <Route path={ProfileRoute.name} element={<Profile />} >
           <Route path={ProfileRoute.childs.images} element={<ProfileImages />} />
+          <Route path={ProfileRoute.childs.trips} element={<ProfileMyTrips />} />
         </Route>
       </Route>
     </Route>

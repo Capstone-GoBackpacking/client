@@ -21,9 +21,11 @@ module.exports = {
         '44p': '44px',
       },
       flex: {
-        '2': '2 2 0%'
+        '2': '2 2 0%',
+        '3': '3 3 0%'
       }
     },
   },
+  important: true,
   plugins: [],
 }
