@@ -1,7 +1,9 @@
+import { LoginContainer } from "src/containers"
+
 function Login() {
   return (
     <div>
-      this is login
+      <LoginContainer />
     </div>
   )
 }

@@ -5,9 +5,11 @@ import {
   Navbar
 } from 'src/containers'
 import { ProfileRoute } from 'src/routes/route-name'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 const Profile = () => {
+  const navigate = useNavigate()
+
   const navItems = [
     {
       label: 'My Trips',
