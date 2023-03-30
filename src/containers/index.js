@@ -6,6 +6,7 @@ import SideBar from './sidebar/sidebar.container'
 import LoginContainer from "./login/login.container"
 import ImagesContainer from "./images/images.container"
 import MyTrips from "./myTrips/myTrips.container"
+import MyEquipments from './myEquipments/myEquipments.container'
 
 export {
   RegisterContainer,
@@ -15,5 +16,6 @@ export {
   SideBar,
   LoginContainer,
   ImagesContainer,
-  MyTrips
+  MyTrips,
+  MyEquipments
 }

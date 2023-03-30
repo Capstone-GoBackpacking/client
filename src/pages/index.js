@@ -4,6 +4,7 @@ import Hobbies from './hobbies/hobbies.page'
 import Profile from './profile/profile.page'
 import ProfileImages from './profile/images/images'
 import ProfileMyTrips from './profile/mytrips/mytrips'
+import ProfileShop from './profile/shop/shop'
 
 export {
   Login,
@@ -11,5 +12,6 @@ export {
   Hobbies,
   Profile,
   ProfileImages,
-  ProfileMyTrips
+  ProfileMyTrips,
+  ProfileShop
 }

@@ -24,7 +24,7 @@ const MyTrips = () => {
       host: 'Viet Anh Le',
       slot: 10,
       joined: 5,
-      verified: 'enable'
+      verified: 'disable'
     },
     {
       id: 3,
@@ -36,7 +36,7 @@ const MyTrips = () => {
       host: 'Viet Anh Le',
       slot: 10,
       joined: 5,
-      verified: 'enable'
+      verified: 'pending'
     }
   ]
 

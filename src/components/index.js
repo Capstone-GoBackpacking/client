@@ -5,6 +5,7 @@ import SideBarOption from './sideBarOption/sideBarOption.component'
 import StatusBox from './statusBox/statusBox.component'
 import Login from "./login/login.component"
 import Trip from "./trip/trip.component"
+import Equipment from "./equipment/equipment.component"
 
 export {
   Register,
@@ -13,5 +14,6 @@ export {
   SideBarOption,
   StatusBox,
   Login,
-  Trip
+  Trip,
+  Equipment
 }

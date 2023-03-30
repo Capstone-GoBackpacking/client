@@ -29,7 +29,7 @@ const MyTrips = () => {
 
   return (
     <>
-      <div className="md:flex ">
+      <div className="md:flex">
         <div className="flex flex-1 gap-5">
           <div className="flex items-center">
             <Button className="w-8 h-8 bg-white rounded-full border-0" icon={GrAddCircle} />

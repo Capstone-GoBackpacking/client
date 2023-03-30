@@ -29,9 +29,11 @@ const SideBar = () => {
   ]
 
   return (
-    <>
-      <PanelMenu model={sidebarOptions} />
-    </>
+    <div className="relative w-40">
+      <div className="fixed">
+        <PanelMenu model={sidebarOptions} />
+      </div>
+    </div>
   )
 }
 
