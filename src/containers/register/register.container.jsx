@@ -1,7 +1,11 @@
 import React, { useState } from "react"
 import { Register } from "src/components"
+import { useMutation } from "@apollo/client"
+import { REGISTER } from "src/graphql/register"
 
 const RegisterContainer = () => {
+  const [register, { error }] = useMutation(REGISTER)
+
   const [registerData, setRegisterData] = useState({
     firstName: '',
     lastName: '',
@@ -18,10 +22,17 @@ const RegisterContainer = () => {
     const { firstName, lastName, email, password, confirmPassword } = registerData
     if (firstName && lastName && email && password && confirmPassword) {
       if (password === confirmPassword) {
-        console.log('register')
+        register({
+          variables: {
+            input: {
+              email,
+              password
+            }
+          }
+        })
       }
     } else {
-      console.log('error')
+      console.log(error)
     }
   }
 

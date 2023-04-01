@@ -9,7 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.11",
     "@reduxjs/toolkit": "^1.9.3",
+    "graphql": "^16.6.0",
     "primeicons": "^6.0.1",
     "primereact": "^9.2.1",
     "react": "^18.2.0",
