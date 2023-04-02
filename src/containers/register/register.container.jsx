@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Register } from "src/components"
 import { useMutation } from "@apollo/client"
 import { REGISTER } from "src/graphql/register"
+import { setValueForState } from "src/utils/setValueForState"
 
 const RegisterContainer = () => {
   const [register, { error }] = useMutation(REGISTER)
@@ -13,10 +14,6 @@ const RegisterContainer = () => {
     password: '',
     confirmPassword: ''
   })
-
-  const handleInputRegisterData = (key, value) => {
-    setRegisterData(state => ({ ...state, [key]: value }))
-  }
 
   const handleSubmitRegister = () => {
     const { firstName, lastName, email, password, confirmPassword } = registerData
@@ -36,7 +33,7 @@ const RegisterContainer = () => {
     }
   }
 
-  return <Register data={registerData} onInput={handleInputRegisterData} onSubmit={handleSubmitRegister} />
+  return <Register data={registerData} onInput={setValueForState(setRegisterData)} onSubmit={handleSubmitRegister} />
 }
 
 export default RegisterContainer

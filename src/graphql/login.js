@@ -1,7 +1,7 @@
-const { gql } = require("@apollo/client")
+import { gql } from "@apollo/client"
 
 export const LOGIN = gql`
-  mutation($input: AuthInput!) {
+  mutation Login($input: AuthInput!) {
     login(loginInput: $input) {
       access_token
       account {
