@@ -8,7 +8,8 @@ import {
   LoginRoute,
   RegisterRoute,
   HobbiesRoute,
-  ProfileRoute
+  ProfileRoute,
+  CreateTripRoute,
 } from './route-name'
 import {
   Login,
@@ -17,7 +18,8 @@ import {
   Profile,
   ProfileImages,
   ProfileMyTrips,
-  ProfileShop
+  ProfileShop,
+  CreateTrip
 } from 'src/pages'
 import App from '../App'
 import { MainLayout } from 'src/layouts'
@@ -34,6 +36,7 @@ export default createBrowserRouter(
           <Route path={ProfileRoute.childs.trips} element={<ProfileMyTrips />} />
           <Route path={ProfileRoute.childs.shop} element={<ProfileShop />} />
         </Route>
+        <Route path={CreateTripRoute} element={<CreateTrip />} />
       </Route>
     </Route>
   )
