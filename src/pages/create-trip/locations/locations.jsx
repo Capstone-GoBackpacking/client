@@ -9,7 +9,9 @@ const Locations = () => {
   const [coordinates, setCoordinates] = useState([])
 
   const handleAddCoordinates = (lat, lng) => {
-    setCoordinates(state => [...state, [lat, lng]])
+    if (coordinates.length < 2) {
+      setCoordinates(state => [...state, [lat, lng]])
+    }
   }
 
   return (

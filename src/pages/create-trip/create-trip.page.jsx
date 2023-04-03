@@ -3,11 +3,8 @@ import { TbCategory2, TbListDetails } from 'react-icons/tb'
 import { HiLocationMarker } from 'react-icons/hi'
 import TripTypes from './tripTypes/tripTypes'
 import Locations from './locations/locations'
-const Element = () => {
-  return (
-    <div>type</div>
-  )
-}
+import Description from './description/description'
+
 const CreateTrip = () => {
   const events = [
     {
@@ -23,7 +20,7 @@ const CreateTrip = () => {
     {
       Icon: TbListDetails,
       color: '#FBBC05',
-      Element: Element
+      Element: Description
     }
   ]
 
