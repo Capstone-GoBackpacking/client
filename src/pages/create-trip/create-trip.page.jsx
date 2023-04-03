@@ -1,7 +1,8 @@
 import { Timeline } from 'primereact/timeline'
 import { TbCategory2, TbListDetails } from 'react-icons/tb'
 import { HiLocationMarker } from 'react-icons/hi'
-import { TripTypes } from 'src/containers'
+import TripTypes from './tripTypes/tripTypes'
+import Locations from './locations/locations'
 const Element = () => {
   return (
     <div>type</div>
@@ -17,7 +18,7 @@ const CreateTrip = () => {
     {
       Icon: HiLocationMarker,
       color: '#31A436',
-      Element: Element
+      Element: Locations
     },
     {
       Icon: TbListDetails,
@@ -36,9 +37,9 @@ const CreateTrip = () => {
 
   const customizedContent = (item) => {
     return (
-      <>
+      <div className="my-5">
         <item.Element />
-      </>
+      </div>
     )
   }
 
