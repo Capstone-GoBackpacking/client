@@ -4,8 +4,13 @@ import { HiLocationMarker } from 'react-icons/hi'
 import TripTypes from './tripTypes/tripTypes'
 import Locations from './locations/locations'
 import Description from './description/description'
+import { Button } from 'src/components'
+import { useSelector } from 'react-redux'
+import createTripSelector from 'src/redux/reducers/create-trip/create-trip.selector'
 
 const CreateTrip = () => {
+  const createTripData = useSelector(createTripSelector)
+
   const events = [
     {
       Icon: TbCategory2,
@@ -40,9 +45,18 @@ const CreateTrip = () => {
     )
   }
 
+  const handleSubmitCreateTrip = () => {
+    console.log(createTripData)
+  }
+
   return (
-    <div id="create-trip" className="w-9/12 m-auto">
-      <Timeline value={events} marker={customizedMarker} content={customizedContent} />
+    <div className='my-10 w-9/12 m-auto'>
+      <div id="create-trip" className="">
+        <Timeline value={events} marker={customizedMarker} content={customizedContent} />
+      </div>
+      <div className='pb-10'>
+        <Button type="primary" name="Create trip" className="px-4 py-2 float-right" onClick={handleSubmitCreateTrip}/>
+      </div>
     </div>
   )
 }

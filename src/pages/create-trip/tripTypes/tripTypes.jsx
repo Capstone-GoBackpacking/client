@@ -1,11 +1,14 @@
-import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux";
 import TripType from "src/components/tripType/tripType.component"
+import { setValue } from "src/redux/reducers/create-trip/create-trip.reducer";
+import createTripSelector from "src/redux/reducers/create-trip/create-trip.selector";
 
 const TripTypes = () => {
-  const [selectedType, setSelectedType] = useState(null)
+  const { type } = useSelector(createTripSelector)
+  const dispatch = useDispatch()
 
   const onSelected = (id) => {
-    console.log(selectedType)
+    dispatch(setValue({ key: 'type', value: id }))
     setSelectedType(id)
   }
   const data = [
@@ -39,7 +42,7 @@ const TripTypes = () => {
           data.map(item => <TripType
             key={item.id}
             id={item.id}
-            selected={selectedType === item.id}
+            selected={type === item.id}
             onSelected={onSelected}
             name={item.name}
             thumbnail={item.thumbnail}
