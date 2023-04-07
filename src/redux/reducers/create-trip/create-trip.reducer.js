@@ -8,6 +8,7 @@ const initialState = {
   start: '',
   end: '',
   name: '',
+  slot: null,
   description: ''
 }
 
