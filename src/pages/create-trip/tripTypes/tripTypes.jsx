@@ -15,7 +15,7 @@ const TripTypes = () => {
     dispatch(setValue({ key: "type", value: id }));
     setSelectedType(id);
   };
-
+  
   return (
     <div className="bg-white rounded-md shadow-md p-4">
       <h1 className="font-bold mb-5">Trip Types</h1>
@@ -33,7 +33,7 @@ const TripTypes = () => {
               selected={type === item.id}
               onSelected={onSelected}
               name={item.name}
-              thumbnail={item.thumbnail}
+              icon={item.icon}
             />
           ))}
       </div>

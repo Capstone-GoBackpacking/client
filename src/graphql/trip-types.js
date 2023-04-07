@@ -5,6 +5,7 @@ export const TRIPTYPES = gql`
     types {
       id
       name
+      icon
     }
   }
 `;
