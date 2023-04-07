@@ -1,11 +1,12 @@
 import { InputText } from "primereact/inputtext";
+import { InputNumber } from 'primereact/inputnumber'
 import { InputTextarea } from 'primereact/inputtextarea';
 import { useDispatch, useSelector } from "react-redux";
 import createTripSelector from "src/redux/reducers/create-trip/create-trip.selector";
 import { setValue } from "src/redux/reducers/create-trip/create-trip.reducer";
 
 const Description = () => {
-  const { name, description } = useSelector(createTripSelector);
+  const { name, slot, description } = useSelector(createTripSelector);
   const dispatch = useDispatch();
 
   const handleSetValue = (key, value) => {
@@ -23,6 +24,17 @@ const Description = () => {
             value={name}
             onChange={(e) => handleSetValue('name', e.target.value)}
           />
+        </div>
+        <div className="grid grid-cols-4">
+          <div>
+            <label htmlFor="slot" className="font-bold">Limit Slot</label>
+            <InputNumber
+              id="slot"
+              className="w-full"
+              value={slot}
+              onChange={(e) => handleSetValue('slot', e.value)}
+            />
+          </div>
         </div>
         <div>
           <label htmlFor="description" className="font-bold">Description</label>
