@@ -6,6 +6,7 @@ import StatusBox from './statusBox/statusBox.component'
 import Login from "./login/login.component"
 import Trip from "./trip/trip.component"
 import Equipment from "./equipment/equipment.component"
+import Loading from "./loading/loading.component"
 
 export {
   Register,
@@ -15,5 +16,6 @@ export {
   StatusBox,
   Login,
   Trip,
-  Equipment
+  Equipment,
+  Loading
 }
