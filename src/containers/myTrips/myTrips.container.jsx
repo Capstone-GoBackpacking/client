@@ -46,7 +46,7 @@ const MyTrips = () => {
         <Trip
           key={trip.id}
           id={trip.id}
-          thumbnail={trip.thumnail}
+          thumbnail={trip.thumbnail}
           from={trip.from}
           to={trip.to}
           timeStart={trip.timeStart}

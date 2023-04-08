@@ -8,6 +8,7 @@ import ImagesContainer from "./images/images.container"
 import MyTrips from "./myTrips/myTrips.container"
 import MyEquipments from './myEquipments/myEquipments.container'
 import MyMap from './myMap/myMap.container'
+import TripsContainer from "./trips/trips.container"
 
 export {
   RegisterContainer,
@@ -19,5 +20,6 @@ export {
   ImagesContainer,
   MyTrips,
   MyEquipments,
-  MyMap
+  MyMap,
+  TripsContainer
 }
