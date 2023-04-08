@@ -6,6 +6,7 @@ import ProfileImages from './profile/images/images'
 import ProfileMyTrips from './profile/mytrips/mytrips'
 import ProfileShop from './profile/shop/shop'
 import CreateTrip from './create-trip/create-trip.page'
+import Trips from './trips/trips.page'
 
 export {
   Login,
@@ -15,5 +16,6 @@ export {
   ProfileImages,
   ProfileMyTrips,
   ProfileShop,
-  CreateTrip
+  CreateTrip,
+  Trips
 }

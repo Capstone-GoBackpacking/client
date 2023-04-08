@@ -11,3 +11,4 @@ export const ProfileRoute = {
     shop: 'shop'
   }
 }
+export const TripsRoute = 'trips'
