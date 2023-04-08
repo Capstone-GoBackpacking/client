@@ -18,7 +18,6 @@ const Trip = ({
   direction = "horizontal",
   distance
 }) => {
-  console.log(thumbnail);
   if (direction === "horizontal") {
     return (
       <div className="flex py-2 px-3 rounded-md drop-shadow-md bg-white gap-x-2">
