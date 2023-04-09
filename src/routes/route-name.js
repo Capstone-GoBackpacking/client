@@ -12,3 +12,4 @@ export const ProfileRoute = {
   }
 }
 export const TripsRoute = 'trips'
+export const LocationsRoute = 'locations'

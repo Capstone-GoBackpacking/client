@@ -7,7 +7,8 @@ import Login from "./login/login.component";
 import Trip from "./trip/trip.component";
 import Equipment from "./equipment/equipment.component";
 import Loading from "./loading/loading.component";
-import LocationListing from "./locationListing/locationListing.component";
+import LocationCard from "./locationCard/locationCard.component";
+import Tag from "./tag/tag.component";
 
 export {
   Register,
@@ -19,5 +20,6 @@ export {
   Trip,
   Equipment,
   Loading,
-  LocationListing,
+  LocationCard,
+  Tag
 };

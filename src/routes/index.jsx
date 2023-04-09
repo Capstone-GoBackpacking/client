@@ -11,6 +11,7 @@ import {
   ProfileRoute,
   CreateTripRoute,
   TripsRoute,
+  LocationsRoute,
 } from "./route-name";
 import {
   Login,
@@ -22,6 +23,7 @@ import {
   ProfileShop,
   CreateTrip,
   Trips,
+  Locations,
 } from "src/pages";
 import App from "../App";
 import { MainLayout } from "src/layouts";
@@ -46,6 +48,7 @@ export default createBrowserRouter(
         </Route>
         <Route path={CreateTripRoute} element={<CreateTrip />} />
         <Route path={TripsRoute} element={<Trips />} />
+        <Route path={LocationsRoute} element={<Locations />} />
       </Route>
     </Route>
   )
