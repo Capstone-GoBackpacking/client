@@ -52,7 +52,7 @@ const LocationListing = () => {
           className="w-96"
         />
       </div>
-      <div>
+      <div className="flex flex-wrap">
         {locationList.map((location, index) => {
           return (
             <LocationCard key={index} location={location} />
