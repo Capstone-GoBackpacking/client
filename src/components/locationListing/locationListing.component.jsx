@@ -5,7 +5,6 @@ import LocationCard from "./locationCard.component";
 
 import { InputText } from "primereact/inputtext";
 import locationImage from "../../assets/images/Screenshot from 2023-03-29 20-14-31 1.png";
-import { LocationListing } from "src/components";
 
 const tagList = ["Point", "Price", "Most Review"];
 const locationList = [
