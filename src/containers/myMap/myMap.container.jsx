@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer } from "react-leaflet"
+import { MapContainer, TileLayer } from "react-leaflet";
 
 const MyMap = ({ children }) => {
   return (
@@ -6,7 +6,7 @@ const MyMap = ({ children }) => {
       center={[16.075319, 108.156435]}
       zoom={13}
       scrollWheelZoom={true}
-      className="w-full h-96"
+      className="w-full h-full"
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -14,7 +14,7 @@ const MyMap = ({ children }) => {
       />
       {children}
     </MapContainer>
-  )
-}
+  );
+};
 
-export default MyMap
+export default MyMap;

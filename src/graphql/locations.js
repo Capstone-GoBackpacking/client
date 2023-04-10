@@ -9,6 +9,7 @@ export const LOCATIONS = gql`
       lat
       lng
       description
+      thumbnail
     }
   }
-`
+`;

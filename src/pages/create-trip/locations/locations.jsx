@@ -84,49 +84,51 @@ const Locations = () => {
         </div>
       </div>
       <div className="mt-3 md:mt-5">
-        <MyMap>
-          {locationsData &&
-            locationsData.locations.map((location) => (
-              <Marker
-                key={location.id}
-                position={{ lat: location.lat, lng: location.lng }}
-                eventHandlers={{
-                  click: () => {
-                    if (location.id !== from && location.id !== to) {
-                      if (!from) {
-                        handleSetValue("from", location.id);
-                        setLocationName({
-                          ...locationName,
-                          from: location.name,
-                        });
+        <div className="h-96">
+          <MyMap>
+            {locationsData &&
+              locationsData.locations.map((location) => (
+                <Marker
+                  key={location.id}
+                  position={{ lat: location.lat, lng: location.lng }}
+                  eventHandlers={{
+                    click: () => {
+                      if (location.id !== from && location.id !== to) {
+                        if (!from) {
+                          handleSetValue("from", location.id);
+                          setLocationName({
+                            ...locationName,
+                            from: location.name,
+                          });
+                        }
+                        if (from && !to) {
+                          handleSetValue("to", location.id);
+                          setLocationName({
+                            ...locationName,
+                            to: location.name,
+                          });
+                        }
                       }
-                      if (from && !to) {
-                        handleSetValue("to", location.id);
-                        setLocationName({
-                          ...locationName,
-                          to: location.name,
-                        });
-                      }
-                    }
-                  },
-                }}
-              >
-                <Popup>
-                  <p>{location.name}</p>
-                  {from === location.id && (
-                    <button onClick={() => removeSelect("from")}>
-                      Remove From
-                    </button>
-                  )}
-                  {to === location.id && (
-                    <button onClick={() => removeSelect("to")}>
-                      Remove To
-                    </button>
-                  )}
-                </Popup>
-              </Marker>
-            ))}
-        </MyMap>
+                    },
+                  }}
+                >
+                  <Popup>
+                    <p>{location.name}</p>
+                    {from === location.id && (
+                      <button onClick={() => removeSelect("from")}>
+                        Remove From
+                      </button>
+                    )}
+                    {to === location.id && (
+                      <button onClick={() => removeSelect("to")}>
+                        Remove To
+                      </button>
+                    )}
+                  </Popup>
+                </Marker>
+              ))}
+          </MyMap>
+        </div>
       </div>
     </div>
   );

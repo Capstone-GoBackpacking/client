@@ -1,25 +1,20 @@
 import React from "react";
-import locationImage from "../../assets/images/Following.png";
+import locationImage from "src/assets/images/Following.png";
 
-const LocationCard = ({ location }) => {
+const LocationCard = ({ thumbnail, address, name, id, lat, lng }) => {
   return (
     <div className="rounded-md shadow-md p-2">
       <div className="flex gap-x-2">
-        <img
-          className="w-40 h-28"
-          src={location.image}
-        />
+        <img className="w-40 h-28" src={thumbnail} />
         <div className="flex flex-col w-[400px]">
-          <h3>{location.title}</h3>
-          <p>{location.location}</p>
-          <p>{location.coordinates}</p>
+          <h3>{name}</h3>
+          <p>{address}</p>
+          <p>
+            {lat}, {lng}
+          </p>
           <div className="flex items-center mt-2 justify-end">
-            <img
-              className="mr-2"
-              src={locationImage}
-              alt="likeIcon"
-            />
-            <span
+            <img className="mr-2" src={locationImage} alt="likeIcon" />
+            {/* <span
               className={
                 "flex items-center justify-center rounded-full h-6 w-6 text-xs text-white " +
                 (location.likeNumber >= 10
@@ -30,7 +25,7 @@ const LocationCard = ({ location }) => {
               }
             >
               {location.likeNumber}
-            </span>
+            </span> */}
           </div>
         </div>
       </div>

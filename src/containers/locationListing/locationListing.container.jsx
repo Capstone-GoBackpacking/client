@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { LocationCard, Tag } from "src/components";
 import { InputText } from "primereact/inputtext";
-import { VirtualScroller } from "primereact/virtualscroller";
 
 const LocationListingContainer = ({ locations, tags }) => {
   const [searchInput, setSearchInput] = useState("");
@@ -16,15 +15,25 @@ const LocationListingContainer = ({ locations, tags }) => {
         </div>
         <InputText
           value={searchInput}
-          onChange={(e) => console.log(e.target.value)}
+          onChange={(e) => setSearchInput(e.target.value)}
           className="flex-1"
         />
       </div>
-        <div className="overflow-x-auto flex items-center gap-x-5 py-3">
-          {locations.map((location, index) => {
-            return <LocationCard key={index} location={location} />;
-          })}
-        </div>
+      <div className="overflow-x-auto flex items-center gap-x-5 py-3">
+        {locations.map((location) => {
+          return (
+            <LocationCard
+              key={location.id}
+              thumbnail={location.thumbnail}
+              address={location.address}
+              name={location.name}
+              id={location.id}
+              lat={location.lat}
+              lng={location.lng}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

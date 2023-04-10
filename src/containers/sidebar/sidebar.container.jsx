@@ -5,18 +5,18 @@ import { PanelMenu } from "primereact/panelmenu";
 import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const sidebarOptions = [
     {
       label: "Home",
       icon: IoIosHome,
-      command: () => navigate('/')
+      command: () => navigate("/"),
     },
     {
       label: "Trips",
       icon: FaWalking,
-      command: () => navigate('/trips')
+      command: () => navigate("/trips"),
     },
     {
       label: "Market",
@@ -25,6 +25,7 @@ const SideBar = () => {
     {
       label: "Locations",
       icon: HiLocationMarker,
+      command: () => navigate("/locations"),
     },
   ];
 
