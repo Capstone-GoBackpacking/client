@@ -1,11 +1,11 @@
-import { AiFillStar } from 'react-icons/ai'
-import { Button } from 'src/components'
-import avatar from 'src/assets/images/avatar.png'
+import { AiFillStar } from "react-icons/ai";
+import { Button } from "src/components";
+import avatar from "src/assets/images/avatar.png";
 
 const ProfileInfoContainer = () => {
   return (
     <div className="border-b py-5">
-      <div className="flex w-9/12 m-auto gap-x-3">
+      <div className="flex w-11/12 m-auto gap-x-3">
         <div>
           <img src={avatar} className="w-40 h-40" alt="avatar" />
         </div>
@@ -22,7 +22,7 @@ const ProfileInfoContainer = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProfileInfoContainer
+export default ProfileInfoContainer;

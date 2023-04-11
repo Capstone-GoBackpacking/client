@@ -12,6 +12,7 @@ import {
   CreateTripRoute,
   TripsRoute,
   LocationsRoute,
+  LocationDetailRoute,
 } from "./route-name";
 import {
   Login,
@@ -24,6 +25,7 @@ import {
   CreateTrip,
   Trips,
   Locations,
+  LocationDetail,
 } from "src/pages";
 import App from "../App";
 import { MainLayout } from "src/layouts";
@@ -35,7 +37,7 @@ export default createBrowserRouter(
       <Route path={RegisterRoute} element={<Register />} />
       <Route path={HobbiesRoute} element={<Hobbies />} />
       <Route element={<MainLayout />}>
-        <Route path={ProfileRoute.name} element={<Profile />}>
+        <Route path={ProfileRoute.path} element={<Profile />}>
           <Route
             path={ProfileRoute.childs.images}
             element={<ProfileImages />}
@@ -49,6 +51,7 @@ export default createBrowserRouter(
         <Route path={CreateTripRoute} element={<CreateTrip />} />
         <Route path={TripsRoute} element={<Trips />} />
         <Route path={LocationsRoute} element={<Locations />} />
+        <Route path={LocationDetailRoute.path} element={<LocationDetail />} />
       </Route>
     </Route>
   )

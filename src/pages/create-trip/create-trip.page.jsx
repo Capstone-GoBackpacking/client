@@ -11,7 +11,8 @@ import { useMutation } from "@apollo/client";
 import { CREATE_TRIP } from "src/graphql/trips";
 
 const CreateTrip = () => {
-  const { type, from, to, start, end, name, slot, description } = useSelector(createTripSelector);
+  const { type, from, to, start, end, name, slot, description } =
+    useSelector(createTripSelector);
 
   const [creatTrip, { data, loading, error }] = useMutation(CREATE_TRIP);
 
@@ -63,14 +64,14 @@ const CreateTrip = () => {
           timeStart: start,
           timeEnd: end,
           numberMembers: slot,
-          name: name
-        }
-      }
-    })
+          name: name,
+        },
+      },
+    });
   };
 
   return (
-    <div className="my-10 w-9/12 m-auto">
+    <div className="my-10 w-11/12 m-auto">
       <div id="create-trip" className="">
         <Timeline
           value={events}

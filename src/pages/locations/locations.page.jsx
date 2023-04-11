@@ -50,7 +50,6 @@ const Locations = () => {
     "test",
     "test",
   ];
-  console.log(locationData?.locations);
 
   return (
     <div className="w-11/12 m-auto h-screen flex flex-col">

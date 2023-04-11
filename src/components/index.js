@@ -9,6 +9,7 @@ import Equipment from "./equipment/equipment.component";
 import Loading from "./loading/loading.component";
 import LocationCard from "./locationCard/locationCard.component";
 import Tag from "./tag/tag.component";
+import ImageCarousel from "./imageCarousel/imageCarousel.component";
 
 export {
   Register,
@@ -21,5 +22,6 @@ export {
   Equipment,
   Loading,
   LocationCard,
-  Tag
+  Tag,
+  ImageCarousel,
 };
