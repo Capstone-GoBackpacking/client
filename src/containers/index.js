@@ -8,7 +8,6 @@ import ImagesContainer from "./images/images.container";
 import MyTrips from "./myTrips/myTrips.container";
 import MyEquipments from "./myEquipments/myEquipments.container";
 import MyMap from "./myMap/myMap.container";
-import TripsContainer from "./trips/trips.container";
 import LocationListingContainer from "./locationListing/locationListing.container";
 import LocationInfo from "./locationInfo/locationInfo.container";
 
@@ -23,7 +22,6 @@ export {
   MyTrips,
   MyEquipments,
   MyMap,
-  TripsContainer,
   LocationListingContainer,
   LocationInfo,
 };

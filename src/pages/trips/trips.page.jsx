@@ -1,5 +1,3 @@
-import { TripsContainer } from "src/containers";
-
 const Trips = () => {
   const data = [
     {
@@ -64,14 +62,7 @@ const Trips = () => {
     },
   ];
 
-  return (
-    <div className="w-11/12 m-auto">
-      <TripsContainer
-        data={data}
-        className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 lg:gap-10"
-      />
-    </div>
-  );
+  return <div className="w-11/12 m-auto">code o day</div>;
 };
 
 export default Trips;
