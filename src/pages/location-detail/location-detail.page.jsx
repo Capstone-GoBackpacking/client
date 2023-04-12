@@ -77,18 +77,23 @@ const LocationDetail = () => {
   return (
     <div id="location-detail" className="w-11/12 m-auto">
       <ImageCarousel data={images} />
-      <LocationInfo
-        thumbnail={target.thumbnail}
-        name={target.name}
-        tags={target.tags}
-        lat={target.lat}
-        lng={target.lng}
-        onLike={handleLike}
-        onShare={handleShare}
-      />
-      <Navbar data={navItems} />
-      <div className="mt-5">
-        <Outlet />
+      <div className="flex">
+        <div className="flex-2">
+          <LocationInfo
+            thumbnail={target.thumbnail}
+            name={target.name}
+            tags={target.tags}
+            lat={target.lat}
+            lng={target.lng}
+            onLike={handleLike}
+            onShare={handleShare}
+          />
+          <Navbar data={navItems} />
+          <div className="mt-5">
+            <Outlet />
+          </div>
+        </div>
+        <div className="flex-1"></div>
       </div>
     </div>
   );
