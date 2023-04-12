@@ -1,5 +1,9 @@
 import { ImageCarousel } from "src/components";
-import { LocationInfo } from "src/containers";
+import { LocationInfo, Navbar } from "src/containers";
+import { LocationDetailRoute } from "src/routes/route-name";
+import { AiOutlineSetting, AiFillCamera } from "react-icons/ai";
+import { BsFillChatRightDotsFill } from "react-icons/bs";
+import { Outlet } from "react-router-dom";
 
 const LocationDetail = () => {
   const images = [
@@ -48,8 +52,30 @@ const LocationDetail = () => {
     lng: "8",
   };
 
+  const navItems = [
+    {
+      label: "Reviews",
+      icon: BsFillChatRightDotsFill,
+      path: `${LocationDetailRoute.path}/${LocationDetailRoute.childs.reviews}`,
+    },
+    {
+      label: "Services",
+      icon: AiOutlineSetting,
+      path: `/${LocationDetailRoute.path}/${LocationDetailRoute.childs.services}`,
+    },
+    {
+      label: "Images",
+      icon: AiFillCamera,
+      path: `/${LocationDetailRoute.path}/${LocationDetailRoute.childs.images}`,
+    },
+  ];
+
+  const handleLike = () => {};
+
+  const handleShare = () => {};
+
   return (
-    <div className="w-11/12 m-auto">
+    <div id="location-detail" className="w-11/12 m-auto">
       <ImageCarousel data={images} />
       <LocationInfo
         thumbnail={target.thumbnail}
@@ -57,7 +83,13 @@ const LocationDetail = () => {
         tags={target.tags}
         lat={target.lat}
         lng={target.lng}
+        onLike={handleLike}
+        onShare={handleShare}
       />
+      <Navbar data={navItems} />
+      <div className="mt-5">
+        <Outlet />
+      </div>
     </div>
   );
 };

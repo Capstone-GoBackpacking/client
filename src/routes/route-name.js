@@ -4,7 +4,7 @@ export const RegisterRoute = "register";
 export const HobbiesRoute = "hobbies";
 export const CreateTripRoute = "create-trip";
 export const ProfileRoute = {
-  path: "profile",
+  path: "profile/:profileId",
   childs: {
     images: "images",
     trips: "trips",

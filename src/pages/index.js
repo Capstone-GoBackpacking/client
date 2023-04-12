@@ -9,6 +9,7 @@ import CreateTrip from "./create-trip/create-trip.page";
 import Trips from "./trips/trips.page";
 import Locations from "./locations/locations.page";
 import LocationDetail from "./location-detail/location-detail.page";
+import LocationDetailImages from "./location-detail/images/images";
 
 export {
   Login,
@@ -22,4 +23,5 @@ export {
   Trips,
   Locations,
   LocationDetail,
+  LocationDetailImages,
 };

@@ -26,6 +26,7 @@ import {
   Trips,
   Locations,
   LocationDetail,
+  LocationDetailImages,
 } from "src/pages";
 import App from "../App";
 import { MainLayout } from "src/layouts";
@@ -51,7 +52,12 @@ export default createBrowserRouter(
         <Route path={CreateTripRoute} element={<CreateTrip />} />
         <Route path={TripsRoute} element={<Trips />} />
         <Route path={LocationsRoute} element={<Locations />} />
-        <Route path={LocationDetailRoute.path} element={<LocationDetail />} />
+        <Route path={LocationDetailRoute.path} element={<LocationDetail />}>
+          <Route
+            path={LocationDetailRoute.childs.images}
+            element={<LocationDetailImages />}
+          />
+        </Route>
       </Route>
     </Route>
   )
