@@ -10,6 +10,7 @@ import MyEquipments from "./myEquipments/myEquipments.container";
 import MyMap from "./myMap/myMap.container";
 import TripsContainer from "./trips/trips.container";
 import LocationListingContainer from "./locationListing/locationListing.container";
+import LocationInfo from "./locationInfo/locationInfo.container";
 
 export {
   RegisterContainer,
@@ -24,4 +25,5 @@ export {
   MyMap,
   TripsContainer,
   LocationListingContainer,
+  LocationInfo,
 };
