@@ -10,6 +10,7 @@ import Loading from "./loading/loading.component";
 import LocationCard from "./locationCard/locationCard.component";
 import Tag from "./tag/tag.component";
 import ImageCarousel from "./imageCarousel/imageCarousel.component";
+import LocationStory from "./locationStory/locationStory.component";
 import SideBarModule from "./sidebarModule/sidebarModule.component";
 
 export {
@@ -25,5 +26,6 @@ export {
   LocationCard,
   Tag,
   ImageCarousel,
+  LocationStory,
   SideBarModule,
 };

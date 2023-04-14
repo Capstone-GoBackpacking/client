@@ -1,3 +1,7 @@
+import { InputText } from "primereact/inputtext";
+import { CiSearch } from "react-icons/ci";
+import { LocationStory } from "src/components";
+
 const Trips = () => {
   const data = [
     {
@@ -62,7 +66,34 @@ const Trips = () => {
     },
   ];
 
-  return <div className="w-11/12 m-auto">code o day</div>;
+  return (
+    <div className="w-11/12 m-auto">
+      <div className="flex justify-between mt-10">
+        <div>
+          <h2 className="font-bold mb-2">
+            Hello, Viet Anh Le!
+          </h2>
+          <span>Welcome back and explore the world</span>
+        </div>
+        <div className="flex items-center">
+          <CiSearch className="h-6 w-6 mr-4" />
+          <InputText className="pt-1 w-96" />
+        </div>
+      </div>
+      <div className="flex justify-around mt-8">
+        {data.map((location) => {
+          return (
+            <LocationStory
+              key={location.id}
+              thumbnail={location.thumbnail}
+              to={location.to}
+              slot={location.slot}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default Trips;
