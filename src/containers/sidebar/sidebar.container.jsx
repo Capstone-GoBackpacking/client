@@ -87,7 +87,7 @@ const View = () => {
 
   return (
     <div className="fixed flex md:top-0 z-0 opacity-100 w-full transition-all duration-300 md:sticky md:h-screen md:w-auto md:min-w-min">
-      <div className="md:w-64 pl-3 md:pl-8 pt-4 bg-gray-primary">
+      <div className="md:w-64 pl-3 md:pl-8 pt-4">
         <div className="pl-5 py-2 md:py-4">
           <img
             src="/images/typera_logo_color.png"

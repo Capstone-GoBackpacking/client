@@ -24,9 +24,7 @@ const Child = ({ target, ckey, name, onTarget, hasChild, childs, path }) => {
             }`}
           ></i>
           <p
-            className={`text-sm font-extramedium text-typera-secondary ${
-              isTarget && "text-active"
-            }`}
+            className={`text-sm font-extramedium ${isTarget && "text-active"}`}
           >{`${name} (${childs?.length || 0})`}</p>
         </div>
       </div>
@@ -37,7 +35,7 @@ const Child = ({ target, ckey, name, onTarget, hasChild, childs, path }) => {
               <li key={child._id}>
                 <div className="flex items-center cursor-pointer relative">
                   <i className="bx bxs-crown absolute text-sm ml-3"></i>
-                  <p className="text-sm ml-9 my-1 text-typera-secondary font-extramedium">
+                  <p className="text-sm ml-9 my-1 text-primary font-extramedium">
                     {child.name}
                   </p>
                 </div>
@@ -84,7 +82,11 @@ const View = ({
           }
         }}
       >
-        <div className="flex items-center text-typera-secondary py-3 px-5 hover:bg-gray-secondary cursor-pointer rounded-md">
+        <div
+          className={`flex items-center py-3 px-5 hover:bg-gray-secondary cursor-pointer rounded-md ${
+            isTarget && "text-primary"
+          }`}
+        >
           <img
             src={`src/assets/images/icons/${icon}`}
             alt={icon}
