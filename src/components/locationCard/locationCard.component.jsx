@@ -1,9 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import locationImage from "src/assets/images/Following.png";
 
 const LocationCard = ({ thumbnail, address, name, id, lat, lng }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className="rounded-md shadow-md p-2">
+    <div
+      className="rounded-md shadow-md p-2 cursor-pointer"
+      onClick={() => navigate(`/locations/${id}`)}
+    >
       <div className="flex gap-x-2">
         <img className="w-40 h-28" src={thumbnail} />
         <div className="flex flex-col w-[400px]">
