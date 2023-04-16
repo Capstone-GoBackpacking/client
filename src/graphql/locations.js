@@ -13,3 +13,18 @@ export const LOCATIONS = gql`
     }
   }
 `;
+
+export const GET_LOCATION = gql`
+  query ($id: String!) {
+    getLocationById(id: $id) {
+      name
+      lat
+      lng
+      thumbnail
+      tags {
+        id
+        name
+      }
+    }
+  }
+`;

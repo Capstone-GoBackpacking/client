@@ -20,18 +20,6 @@ const LocationCard = ({ thumbnail, address, name, id, lat, lng }) => {
           </p>
           <div className="flex items-center mt-2 justify-end">
             <img className="mr-2" src={locationImage} alt="likeIcon" />
-            {/* <span
-              className={
-                "flex items-center justify-center rounded-full h-6 w-6 text-xs text-white " +
-                (location.likeNumber >= 10
-                  ? " bg-[#71FF76] "
-                  : location.likeNumber >= 7
-                  ? " bg-[#E2ED65] "
-                  : " bg-[#FF7070] ")
-              }
-            >
-              {location.likeNumber}
-            </span> */}
           </div>
         </div>
       </div>

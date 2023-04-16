@@ -87,11 +87,7 @@ const View = ({
             isTarget && "text-primary"
           }`}
         >
-          <img
-            src={`src/assets/images/icons/${icon}`}
-            alt={icon}
-            className="w-5"
-          />
+          <img src={`assets/images/icons/${icon}`} alt={icon} className="w-5" />
           <p className="mx-2 font-bold text-base leading-6">{name}</p>
           {hasChild && (
             <i

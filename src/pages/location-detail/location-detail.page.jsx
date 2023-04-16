@@ -5,8 +5,17 @@ import { AiOutlineSetting, AiFillCamera } from "react-icons/ai";
 import { BsFillChatRightDotsFill } from "react-icons/bs";
 import { Outlet } from "react-router-dom";
 import { Marker } from "react-leaflet";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { GET_LOCATION } from "src/graphql/locations";
 
 const LocationDetail = () => {
+  const { locationId } = useParams();
+
+  const { data, loading, error } = useQuery(GET_LOCATION, {
+    variables: { id: locationId },
+  });
+
   const images = [
     {
       id: "1",
@@ -86,17 +95,17 @@ const LocationDetail = () => {
     {
       label: "Reviews",
       icon: BsFillChatRightDotsFill,
-      path: `${LocationDetailRoute.path}/${LocationDetailRoute.childs.reviews}`,
+      path: `/locations/${locationId}/reviews`,
     },
     {
       label: "Services",
       icon: AiOutlineSetting,
-      path: `/${LocationDetailRoute.path}/${LocationDetailRoute.childs.services}`,
+      path: `/locations/${locationId}/services`,
     },
     {
       label: "Images",
       icon: AiFillCamera,
-      path: `/${LocationDetailRoute.path}/${LocationDetailRoute.childs.images}`,
+      path: `/locations/${locationId}/images`,
     },
   ];
 
@@ -109,15 +118,17 @@ const LocationDetail = () => {
       <ImageCarousel data={images} />
       <div className="flex gap-2">
         <div className="flex-2">
-          <LocationInfo
-            thumbnail={target.thumbnail}
-            name={target.name}
-            tags={target.tags}
-            lat={target.lat}
-            lng={target.lng}
-            onLike={handleLike}
-            onShare={handleShare}
-          />
+          {data?.getLocationById && (
+            <LocationInfo
+              thumbnail={data?.getLocationById.thumbnail}
+              name={data?.getLocationById.name}
+              tags={data?.getLocationById.tags}
+              lat={data?.getLocationById.lat}
+              lng={data?.getLocationById.lng}
+              onLike={handleLike}
+              onShare={handleShare}
+            />
+          )}
           <Navbar data={navItems} />
           <div className="mt-5">
             <Outlet />
@@ -126,7 +137,14 @@ const LocationDetail = () => {
         <div className="flex-1">
           <div className="h-80">
             <MyMap>
-              <Marker position={{ lat: target.lat, lng: target.lng }}></Marker>
+              {data?.getLocationById && (
+                <Marker
+                  position={{
+                    lat: data?.getLocationById.lat,
+                    lng: data?.getLocationById.lng,
+                  }}
+                ></Marker>
+              )}
             </MyMap>
           </div>
           <div className="mt-5">
