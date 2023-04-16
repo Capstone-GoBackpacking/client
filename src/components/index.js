@@ -12,6 +12,7 @@ import Tag from "./tag/tag.component";
 import ImageCarousel from "./imageCarousel/imageCarousel.component";
 import LocationStory from "./locationStory/locationStory.component";
 import SideBarModule from "./sidebarModule/sidebarModule.component";
+import Post from "./post/post.component";
 
 export {
   Register,
@@ -28,4 +29,5 @@ export {
   ImageCarousel,
   LocationStory,
   SideBarModule,
+  Post,
 };

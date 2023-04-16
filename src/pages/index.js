@@ -10,6 +10,8 @@ import Trips from "./trips/trips.page";
 import Locations from "./locations/locations.page";
 import LocationDetail from "./location-detail/location-detail.page";
 import LocationDetailImages from "./location-detail/images/images";
+import LocationDetailReviews from "./location-detail/reviews/reviews";
+import LocationDetailServices from "./location-detail/services/services";
 
 export {
   Login,
@@ -24,4 +26,6 @@ export {
   Locations,
   LocationDetail,
   LocationDetailImages,
+  LocationDetailReviews,
+  LocationDetailServices,
 };

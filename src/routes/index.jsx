@@ -27,6 +27,8 @@ import {
   Locations,
   LocationDetail,
   LocationDetailImages,
+  LocationDetailReviews,
+  LocationDetailServices,
 } from "src/pages";
 import App from "../App";
 import { MainLayout } from "src/layouts";
@@ -56,6 +58,14 @@ export default createBrowserRouter(
           <Route
             path={LocationDetailRoute.childs.images}
             element={<LocationDetailImages />}
+          />
+          <Route
+            path={LocationDetailRoute.childs.reviews}
+            element={<LocationDetailReviews />}
+          />
+          <Route
+            path={LocationDetailRoute.childs.services}
+            element={<LocationDetailServices />}
           />
         </Route>
       </Route>
