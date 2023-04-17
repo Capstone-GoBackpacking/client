@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { createTripReducer } from "./reducers";
+import { createTripReducer, reviewsReducer } from "./reducers";
 
 export default configureStore({
   reducer: {
-    createTrip: createTripReducer
-  }
-})
+    createTrip: createTripReducer,
+    reviews: reviewsReducer,
+  },
+});

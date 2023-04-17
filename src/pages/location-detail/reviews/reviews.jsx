@@ -1,48 +1,43 @@
 import { InputTextarea } from "primereact/inputtextarea";
 import avatar from "src/assets/images/avatar.png";
 import { Button, Post } from "src/components";
+import { HiArrowCircleUp, HiArrowCircleDown } from "react-icons/hi";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  HiArrowCircleUp,
-  HiArrowCircleDown,
-  HiArrowNarrowUp,
-} from "react-icons/hi";
+  addReview,
+  reviewsAsync,
+} from "src/redux/reducers/reviews/reviews.reducer";
+import { useEffect, useState } from "react";
+import reviewsSelector from "src/redux/reducers/reviews/reviews.selector";
+import { useMutation } from "@apollo/client";
+import { CREATE_REVIEW } from "src/graphql/reviews";
 
 const Reviews = () => {
-  const reviews = [
-    {
-      id: "1",
-      avatar: avatar,
-      hostname: "le viet anh",
-      content:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima vero sit accusantium eaque praesentium! Vel molestiae repellendus possimus soluta quasi. A, quaerat. Voluptatem tempora illo obcaecati, officiis minus alias accusantium!",
-      images: [
-        "https://seo-hacker.com/wp-content/uploads/2018/04/Best-URL-Shortening-Tools-For-2018-.jpg",
-      ],
-    },
-    {
-      id: "2",
-      avatar: avatar,
-      hostname: "nguyen thuy hang",
-      content:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima vero sit accusantium eaque praesentium! Vel molestiae repellendus possimus soluta quasi. A, quaerat. Voluptatem tempora illo obcaecati, officiis minus alias accusantium!",
-      images: [
-        "https://seo-hacker.com/wp-content/uploads/2018/04/Best-URL-Shortening-Tools-For-2018-.jpg",
-        "https://seo-hacker.com/wp-content/uploads/2018/04/Best-URL-Shortening-Tools-For-2018-.jpg",
-      ],
-    },
-    {
-      id: "3",
-      avatar: avatar,
-      hostname: "nguyen thuy hang",
-      content:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima vero sit accusantium eaque praesentium! Vel molestiae repellendus possimus soluta quasi. A, quaerat. Voluptatem tempora illo obcaecati, officiis minus alias accusantium!",
-      images: [
-        "https://seo-hacker.com/wp-content/uploads/2018/04/Best-URL-Shortening-Tools-For-2018-.jpg",
-        "https://seo-hacker.com/wp-content/uploads/2018/04/Best-URL-Shortening-Tools-For-2018-.jpg",
-        "https://seo-hacker.com/wp-content/uploads/2018/04/Best-URL-Shortening-Tools-For-2018-.jpg",
-      ],
-    },
-  ];
+  const { locationId } = useParams();
+  const [createReview] = useMutation(CREATE_REVIEW);
+  const { reviews } = useSelector(reviewsSelector);
+  const dispatch = useDispatch();
+  const [reviewContent, setReviewContent] = useState("");
+
+  const handleCreateReview = async () => {
+    const { data } = await createReview({
+      variables: {
+        input: {
+          content: reviewContent,
+          locationId,
+        },
+      },
+    });
+    dispatch(addReview(data.createReview));
+    setReviewContent("");
+  };
+
+  useEffect(() => {
+    if (locationId) {
+      dispatch(reviewsAsync(locationId));
+    }
+  }, [locationId]);
 
   return (
     <div className="w-11/12 m-auto">
@@ -52,8 +47,18 @@ const Reviews = () => {
           alt="avatar"
           className="w-12 h-12 rounded-full cursor-pointer"
         />
-        <InputTextarea className="flex-1 mx-10" autoResize />
-        <Button type="primary" name="Post" className="h-12 px-6" />
+        <InputTextarea
+          className="flex-1 mx-10"
+          autoResize
+          value={reviewContent}
+          onChange={(e) => setReviewContent(e.target.value)}
+        />
+        <Button
+          type="primary"
+          name="Post"
+          className="h-12 px-6"
+          onClick={() => handleCreateReview()}
+        />
       </div>
       <div>
         {reviews.map((review) => {
@@ -61,10 +66,10 @@ const Reviews = () => {
             <div>
               <Post
                 key={review.id}
-                avatar={review.avatar}
-                hostname={review.hostname}
+                avatar={review.host.profile.avatar}
+                hostname={review.host.profile.fullName}
                 content={review.content}
-                images={review.images}
+                images={review?.images}
               />
               <div className="flex gap-20 mt-2">
                 <div className="flex items-center gap-5">

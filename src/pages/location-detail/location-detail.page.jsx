@@ -1,6 +1,5 @@
 import { ImageCarousel } from "src/components";
 import { LocationInfo, MyMap, Navbar } from "src/containers";
-import { LocationDetailRoute } from "src/routes/route-name";
 import { AiOutlineSetting, AiFillCamera } from "react-icons/ai";
 import { BsFillChatRightDotsFill } from "react-icons/bs";
 import { Outlet } from "react-router-dom";
@@ -42,25 +41,6 @@ const LocationDetail = () => {
       url: "https://www.shutterstock.com/image-photo/one-person-breaks-formation-violation-260nw-1940349595.jpg",
     },
   ];
-
-  const target = {
-    id: "1",
-    thumbnail:
-      "https://www.shutterstock.com/image-photo/one-person-breaks-formation-violation-260nw-1940349595.jpg",
-    name: "Thang canh thien nhien Nhon Hai",
-    tags: [
-      {
-        id: "1",
-        name: "tag 1",
-      },
-      {
-        id: "2",
-        name: "tag 2",
-      },
-    ],
-    lat: "8",
-    lng: "8",
-  };
 
   const relateTrips = [
     {
