@@ -7,13 +7,20 @@ import { Marker } from "react-leaflet";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_LOCATION } from "src/graphql/locations";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const LocationDetail = () => {
   const { locationId } = useParams();
+  const navigate = useNavigate();
 
   const { data, loading, error } = useQuery(GET_LOCATION, {
     variables: { id: locationId },
   });
+
+  useEffect(() => {
+    navigate(`/locations/${locationId}/reviews`);
+  }, []);
 
   const images = [
     {
