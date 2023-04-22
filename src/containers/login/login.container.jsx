@@ -3,9 +3,11 @@ import { Login } from "src/components";
 import { setValueForState } from "src/utils/setValueForState";
 import { useMutation } from "@apollo/client";
 import { LOGIN } from "src/graphql/login";
+import { useNavigate } from "react-router-dom";
 
 const LoginContainer = () => {
   const [login, { data, error }] = useMutation(LOGIN);
+  const navigate = useNavigate();
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -14,6 +16,7 @@ const LoginContainer = () => {
 
   if (data) {
     localStorage.setItem("access_token", data.login.access_token);
+    navigate("/trips");
   }
 
   const handleSubmitLogin = () => {

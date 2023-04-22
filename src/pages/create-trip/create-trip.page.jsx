@@ -63,7 +63,6 @@ const CreateTrip = () => {
           slot: slot,
           timeStart: start,
           timeEnd: end,
-          numberMembers: slot,
           name: name,
         },
       },
