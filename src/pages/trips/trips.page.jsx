@@ -113,7 +113,7 @@ const Trips = () => {
                         type="primary"
                         name="Detail"
                         className="p-2 w-32"
-                        onClick={() => navigate(`/locations/${trip.id}`)}
+                        onClick={() => navigate(`/trips/${trip.id}`)}
                       />
                     </div>
                   </div>

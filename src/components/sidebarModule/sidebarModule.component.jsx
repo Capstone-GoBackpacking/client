@@ -23,9 +23,9 @@ const Child = ({ target, ckey, name, onTarget, hasChild, childs, path }) => {
               isTarget && "rotate-90"
             }`}
           ></i>
-          <p
-            className={`text-sm font-extramedium ${isTarget && "text-active"}`}
-          >{`${name} (${childs?.length || 0})`}</p>
+          <p className={`text-sm font-extramedium ${isTarget && "text-active"}`}>{`${name} (${
+            childs?.length || 0
+          })`}</p>
         </div>
       </div>
       {isTarget && childs && hasChild && (
@@ -35,9 +35,7 @@ const Child = ({ target, ckey, name, onTarget, hasChild, childs, path }) => {
               <li key={child._id}>
                 <div className="flex items-center cursor-pointer relative">
                   <i className="bx bxs-crown absolute text-sm ml-3"></i>
-                  <p className="text-sm ml-9 my-1 text-primary font-extramedium">
-                    {child.name}
-                  </p>
+                  <p className="text-sm ml-9 my-1 text-primary font-extramedium">{child.name}</p>
                 </div>
               </li>
             ))}
@@ -48,16 +46,7 @@ const Child = ({ target, ckey, name, onTarget, hasChild, childs, path }) => {
   );
 };
 
-const View = ({
-  target,
-  ckey,
-  name,
-  icon,
-  hasChild,
-  onTarget,
-  childs,
-  path,
-}) => {
+const View = ({ target, ckey, name, icon, hasChild, onTarget, childs, path }) => {
   const navigate = useNavigate();
 
   const isTarget = target === ckey;
@@ -87,13 +76,11 @@ const View = ({
             isTarget && "text-primary"
           }`}
         >
-          <img src={`assets/images/icons/${icon}`} alt={icon} className="w-5" />
+          <img src={`/assets/images/icons/${icon}`} alt={icon} className="w-5" />
           <p className="mx-2 font-bold text-base leading-6">{name}</p>
           {hasChild && (
             <i
-              className={`bx bx-chevron-right text-xl trasition-transform duration-300 ${
-                isTarget && "rotate-90"
-              }`}
+              className={`bx bx-chevron-right text-xl trasition-transform duration-300 ${isTarget && "rotate-90"}`}
             ></i>
           )}
         </div>
@@ -101,10 +88,7 @@ const View = ({
       {hasChild && isTarget && (
         <div>
           <div className="relative mb-4">
-            <AiOutlineSearch
-              size={25}
-              className="absolute pl-2 inset-y-0 h-full text-gray-thirt"
-            />
+            <AiOutlineSearch size={25} className="absolute pl-2 inset-y-0 h-full text-gray-thirt" />
 
             <input
               type="text"

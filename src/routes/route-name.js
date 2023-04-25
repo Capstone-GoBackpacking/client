@@ -21,3 +21,11 @@ export const LocationDetailRoute = {
     reviews: "reviews",
   },
 };
+
+export const TripDetailRoute = {
+  path: "trips/:tripId",
+  childs: {
+    images: "images",
+    discussion: "discussion",
+  },
+};

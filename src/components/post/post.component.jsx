@@ -4,7 +4,7 @@ const Post = ({ avatar, hostname, content, images }) => {
   return (
     <div className="mt-10">
       <div className="flex items-center gap-10">
-        <img src={avatar} alt="avatar" className="w-12 h-12" />
+        <img src={avatar || "/assets/images/defaults/avatar.png"} alt="avatar" className="w-12 h-12" />
         <p>{hostname}</p>
       </div>
       <div className="mt-2">

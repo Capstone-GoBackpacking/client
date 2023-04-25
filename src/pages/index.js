@@ -12,6 +12,9 @@ import LocationDetail from "./location-detail/location-detail.page";
 import LocationDetailImages from "./location-detail/images/images";
 import LocationDetailReviews from "./location-detail/reviews/reviews";
 import LocationDetailServices from "./location-detail/services/services";
+import TripDetail from "./trip-detail/trip-detail.page";
+import TripDetailImages from "./trip-detail/images/images";
+import TripDetailDiscussion from "./trip-detail/discussion/discussion";
 
 export {
   Login,
@@ -28,4 +31,7 @@ export {
   LocationDetailImages,
   LocationDetailReviews,
   LocationDetailServices,
+  TripDetail,
+  TripDetailImages,
+  TripDetailDiscussion,
 };

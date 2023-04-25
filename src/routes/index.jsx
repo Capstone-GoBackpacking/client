@@ -9,6 +9,7 @@ import {
   TripsRoute,
   LocationsRoute,
   LocationDetailRoute,
+  TripDetailRoute,
 } from "./route-name";
 import {
   Login,
@@ -25,6 +26,9 @@ import {
   LocationDetailImages,
   LocationDetailReviews,
   LocationDetailServices,
+  TripDetail,
+  TripDetailImages,
+  TripDetailDiscussion,
 } from "src/pages";
 import App from "../App";
 import { MainLayout } from "src/layouts";
@@ -48,6 +52,10 @@ export default createBrowserRouter(
           <Route path={LocationDetailRoute.childs.images} element={<LocationDetailImages />} />
           <Route path={LocationDetailRoute.childs.reviews} element={<LocationDetailReviews />} />
           <Route path={LocationDetailRoute.childs.services} element={<LocationDetailServices />} />
+        </Route>
+        <Route path={TripDetailRoute.path} element={<TripDetail />}>
+          <Route path={TripDetailRoute.childs.images} element={<TripDetailImages />} />
+          <Route path={TripDetailRoute.childs.discussion} element={<TripDetailDiscussion />} />
         </Route>
       </Route>
     </Route>

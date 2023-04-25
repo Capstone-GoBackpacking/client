@@ -13,6 +13,8 @@ import ImageCarousel from "./imageCarousel/imageCarousel.component";
 import LocationStory from "./locationStory/locationStory.component";
 import SideBarModule from "./sidebarModule/sidebarModule.component";
 import Post from "./post/post.component";
+import Member from "./member/member.component";
+import Comment from "./comment/comment.component";
 
 export {
   Register,
@@ -30,4 +32,6 @@ export {
   LocationStory,
   SideBarModule,
   Post,
+  Member,
+  Comment,
 };

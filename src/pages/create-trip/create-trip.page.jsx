@@ -1,6 +1,7 @@
 import { Timeline } from "primereact/timeline";
 import { TbCategory2, TbListDetails } from "react-icons/tb";
 import { HiLocationMarker } from "react-icons/hi";
+import { AiOutlineCloudUpload } from "react-icons/ai";
 import TripTypes from "./tripTypes/tripTypes";
 import Locations from "./locations/locations";
 import Description from "./description/description";
@@ -9,10 +10,10 @@ import { useSelector } from "react-redux";
 import createTripSelector from "src/redux/reducers/create-trip/create-trip.selector";
 import { useMutation } from "@apollo/client";
 import { CREATE_TRIP } from "src/graphql/trips";
+import Upload from "./upload/upload";
 
 const CreateTrip = () => {
-  const { type, from, to, start, end, name, slot, description } =
-    useSelector(createTripSelector);
+  const { type, from, to, start, end, name, slot, description } = useSelector(createTripSelector);
 
   const [creatTrip, { data, loading, error }] = useMutation(CREATE_TRIP);
 
@@ -31,6 +32,11 @@ const CreateTrip = () => {
       Icon: TbListDetails,
       color: "#FBBC05",
       Element: Description,
+    },
+    {
+      Icon: AiOutlineCloudUpload,
+      color: "#6C63FF",
+      Element: Upload,
     },
   ];
 
@@ -72,19 +78,10 @@ const CreateTrip = () => {
   return (
     <div className="my-10 w-11/12 m-auto">
       <div id="create-trip" className="">
-        <Timeline
-          value={events}
-          marker={customizedMarker}
-          content={customizedContent}
-        />
+        <Timeline value={events} marker={customizedMarker} content={customizedContent} />
       </div>
       <div className="pb-10">
-        <Button
-          type="primary"
-          name="Create trip"
-          className="px-4 py-2 float-right"
-          onClick={handleSubmitCreateTrip}
-        />
+        <Button type="primary" name="Create trip" className="px-4 py-2 float-right" onClick={handleSubmitCreateTrip} />
       </div>
     </div>
   );

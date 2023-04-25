@@ -4,10 +4,7 @@ import { Button, Post } from "src/components";
 import { HiArrowCircleUp, HiArrowCircleDown } from "react-icons/hi";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addReview,
-  reviewsAsync,
-} from "src/redux/reducers/reviews/reviews.reducer";
+import { addReview, reviewsAsync } from "src/redux/reducers/reviews/reviews.reducer";
 import { useEffect, useState } from "react";
 import reviewsSelector from "src/redux/reducers/reviews/reviews.selector";
 import { useMutation } from "@apollo/client";
@@ -42,28 +39,19 @@ const Reviews = () => {
   return (
     <div className="w-11/12 m-auto">
       <div className="flex justify-between">
-        <img
-          src={avatar}
-          alt="avatar"
-          className="w-12 h-12 rounded-full cursor-pointer"
-        />
+        <img src={avatar} alt="avatar" className="w-12 h-12 rounded-full cursor-pointer" />
         <InputTextarea
           className="flex-1 mx-10"
           autoResize
           value={reviewContent}
           onChange={(e) => setReviewContent(e.target.value)}
         />
-        <Button
-          type="primary"
-          name="Post"
-          className="h-12 px-6"
-          onClick={() => handleCreateReview()}
-        />
+        <Button type="primary" name="Post" className="h-12 px-6" onClick={() => handleCreateReview()} />
       </div>
       <div>
         {reviews.map((review) => {
           return (
-            <div>
+            <div key={review.id}>
               <Post
                 key={review.id}
                 avatar={review.host.profile.avatar}
@@ -73,17 +61,11 @@ const Reviews = () => {
               />
               <div className="flex gap-20 mt-2">
                 <div className="flex items-center gap-5">
-                  <HiArrowCircleUp
-                    size={25}
-                    className="hover:text-primary cursor-pointer"
-                  />
+                  <HiArrowCircleUp size={25} className="hover:text-primary cursor-pointer" />
                   <span>Upvote</span>
                 </div>
                 <div className="flex items-center gap-5">
-                  <HiArrowCircleDown
-                    size={25}
-                    className="hover:text-primary cursor-pointer"
-                  />
+                  <HiArrowCircleDown size={25} className="hover:text-primary cursor-pointer" />
                   <span>Downvote</span>
                 </div>
               </div>
