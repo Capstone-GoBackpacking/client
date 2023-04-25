@@ -102,18 +102,20 @@ const Trips = () => {
                       </p>
                     </div>
                     <div className="flex-1 flex flex-col items-center justify-evenly">
-                      <Button
-                        type="primary"
-                        name="Join"
-                        className="p-2 w-32"
-                        onClick={() =>
-                          joinTrip({
-                            variables: {
-                              input: trip.id,
-                            },
-                          })
-                        }
-                      />
+                      {trip.targetJoined || (
+                        <Button
+                          type="primary"
+                          name="Join"
+                          className="p-2 w-32"
+                          onClick={() =>
+                            joinTrip({
+                              variables: {
+                                input: trip.id,
+                              },
+                            })
+                          }
+                        />
+                      )}
                       <Button
                         type="primary"
                         name="Detail"

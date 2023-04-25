@@ -14,6 +14,7 @@ export const TRIPS = gql`
     trips {
       id
       name
+      targetJoined
       locationEnd {
         name
       }

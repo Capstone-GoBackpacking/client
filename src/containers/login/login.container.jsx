@@ -31,13 +31,7 @@ const LoginContainer = () => {
     }
   };
 
-  return (
-    <Login
-      data={loginData}
-      onInput={setValueForState(setLoginData)}
-      onSubmit={handleSubmitLogin}
-    />
-  );
+  return <Login data={loginData} onInput={setValueForState(setLoginData)} onSubmit={handleSubmitLogin} />;
 };
 
 export default LoginContainer;

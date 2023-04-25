@@ -20,6 +20,7 @@ export const REVIEWS_OF_LOCATION_STRING = `
     reviewsOfLocation(locationId: $input) {
       id
       content
+      targetVoted
       host {
         profile {
           fullName

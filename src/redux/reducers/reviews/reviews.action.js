@@ -7,7 +7,7 @@ export const addVoted = (state, action) => {
     if (review.id === id) {
       return {
         ...review,
-        vote,
+        targetVoted: vote,
       };
     }
     return review;
@@ -21,12 +21,20 @@ export const addReview = (state, action) => {
 export const reviewsAsync = async (locationId, _thunkAPI) => {
   try {
     const response = await axios
-      .post("http://localhost:3000/graphql", {
-        query: REVIEWS_OF_LOCATION_STRING,
-        variables: {
-          input: locationId,
+      .post(
+        "http://localhost:3000/graphql",
+        {
+          query: REVIEWS_OF_LOCATION_STRING,
+          variables: {
+            input: locationId,
+          },
         },
-      })
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      )
       .then((res) => {
         const { data } = res.data;
         return data.reviewsOfLocation;

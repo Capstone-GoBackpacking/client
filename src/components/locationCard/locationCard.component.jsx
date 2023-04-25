@@ -6,12 +6,9 @@ const LocationCard = ({ thumbnail, address, name, id, lat, lng }) => {
   const navigate = useNavigate();
 
   return (
-    <div
-      className="rounded-md shadow-md p-2 cursor-pointer"
-      onClick={() => navigate(`/locations/${id}`)}
-    >
+    <div className="rounded-md shadow-md p-2 cursor-pointer" onClick={() => navigate(`/locations/${id}`)}>
       <div className="flex gap-x-2">
-        <img className="w-40 h-28" src={thumbnail} />
+        <img className="w-40 h-28" src={thumbnail || "/assets/images/defaults/location.png"} />
         <div className="flex flex-col w-[400px]">
           <h3>{name}</h3>
           <p>{address}</p>

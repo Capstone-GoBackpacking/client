@@ -6,7 +6,7 @@ const LocationInfo = ({ thumbnail, name, tags, lat, lng, onLike, onShare }) => {
     <div className="border-b">
       <div className="flex gap-2 md:gap-5 lg:gap-8">
         <div>
-          <img src={thumbnail} alt={name} className="w-28 h-28" />
+          <img src={thumbnail || "/assets/images/defaults/location.png"} alt={name} className="w-28 h-28" />
         </div>
         <div>
           <h1 className="text-lg md:text-xl lg:text-2xl">{name}</h1>

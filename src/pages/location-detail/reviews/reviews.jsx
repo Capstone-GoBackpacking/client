@@ -62,7 +62,7 @@ const Reviews = () => {
         <Button type="primary" name="Post" className="h-12 px-6" onClick={() => handleCreateReview()} />
       </div>
       <div>
-        {reviews.map((review) => {
+        {reviews?.map((review) => {
           return (
             <div key={review.id}>
               <Post
@@ -76,14 +76,14 @@ const Reviews = () => {
                 <button className="flex items-center gap-5" onClick={() => handleVote(review.id, "up")}>
                   <HiArrowCircleUp
                     size={25}
-                    className={`hover:text-primary ${review.vote === "up" && "text-primary"}`}
+                    className={`hover:text-primary ${review.targetVoted === "up" && "text-primary"}`}
                   />
                   <span>Upvote</span>
                 </button>
                 <button className="flex items-center gap-5" onClick={() => handleVote(review.id, "down")}>
                   <HiArrowCircleDown
                     size={25}
-                    className={`hover:text-primary ${review.vote === "down" && "text-primary"}`}
+                    className={`hover:text-primary ${review.targetVoted === "down" && "text-primary"}`}
                   />
                   <span>Downvote</span>
                 </button>
