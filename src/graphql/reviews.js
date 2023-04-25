@@ -33,3 +33,14 @@ export const REVIEWS_OF_LOCATION_STRING = `
 export const REVIEWS_OF_LOCATION = gql`
   ${REVIEWS_OF_LOCATION_STRING}
 `;
+
+export const VOTE_REVIEW = gql`
+  mutation ($input: CreateVoteReviewInput!) {
+    voting(input: $input) {
+      id
+      reviewId
+      accountId
+      status
+    }
+  }
+`;

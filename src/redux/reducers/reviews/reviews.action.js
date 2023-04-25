@@ -1,6 +1,19 @@
 import axios from "axios";
 import { REVIEWS_OF_LOCATION_STRING } from "src/graphql/reviews";
 
+export const addVoted = (state, action) => {
+  const { id, vote } = action.payload;
+  state.reviews = state.reviews.map((review) => {
+    if (review.id === id) {
+      return {
+        ...review,
+        vote,
+      };
+    }
+    return review;
+  });
+};
+
 export const addReview = (state, action) => {
   state.reviews.push(action.payload);
 };

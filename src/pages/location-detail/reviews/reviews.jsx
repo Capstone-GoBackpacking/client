@@ -4,11 +4,11 @@ import { Button, Post } from "src/components";
 import { HiArrowCircleUp, HiArrowCircleDown } from "react-icons/hi";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addReview, reviewsAsync } from "src/redux/reducers/reviews/reviews.reducer";
+import { addReview, addVoted, reviewsAsync } from "src/redux/reducers/reviews/reviews.reducer";
 import { useEffect, useState } from "react";
 import reviewsSelector from "src/redux/reducers/reviews/reviews.selector";
 import { useMutation } from "@apollo/client";
-import { CREATE_REVIEW } from "src/graphql/reviews";
+import { CREATE_REVIEW, VOTE_REVIEW } from "src/graphql/reviews";
 
 const Reviews = () => {
   const { locationId } = useParams();
@@ -16,6 +16,7 @@ const Reviews = () => {
   const { reviews } = useSelector(reviewsSelector);
   const dispatch = useDispatch();
   const [reviewContent, setReviewContent] = useState("");
+  const [voting] = useMutation(VOTE_REVIEW);
 
   const handleCreateReview = async () => {
     const { data } = await createReview({
@@ -35,6 +36,18 @@ const Reviews = () => {
       dispatch(reviewsAsync(locationId));
     }
   }, [locationId]);
+
+  const handleVote = (id, status) => {
+    voting({
+      variables: {
+        input: {
+          reviewId: id,
+          status,
+        },
+      },
+    });
+    dispatch(addVoted({ id, vote: status }));
+  };
 
   return (
     <div className="w-11/12 m-auto">
@@ -60,14 +73,20 @@ const Reviews = () => {
                 images={review?.images}
               />
               <div className="flex gap-20 mt-2">
-                <div className="flex items-center gap-5">
-                  <HiArrowCircleUp size={25} className="hover:text-primary cursor-pointer" />
+                <button className="flex items-center gap-5" onClick={() => handleVote(review.id, "up")}>
+                  <HiArrowCircleUp
+                    size={25}
+                    className={`hover:text-primary ${review.vote === "up" && "text-primary"}`}
+                  />
                   <span>Upvote</span>
-                </div>
-                <div className="flex items-center gap-5">
-                  <HiArrowCircleDown size={25} className="hover:text-primary cursor-pointer" />
+                </button>
+                <button className="flex items-center gap-5" onClick={() => handleVote(review.id, "down")}>
+                  <HiArrowCircleDown
+                    size={25}
+                    className={`hover:text-primary ${review.vote === "down" && "text-primary"}`}
+                  />
                   <span>Downvote</span>
-                </div>
+                </button>
               </div>
             </div>
           );

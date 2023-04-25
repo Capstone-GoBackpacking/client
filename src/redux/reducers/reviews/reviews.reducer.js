@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   reviewsAsync as reviewsAsyncAction,
   addReview as addReviewAction,
+  addVoted as addVotedAction,
 } from "./reviews.action";
 
 export const reviewsAsync = createAsyncThunk("reviews", reviewsAsyncAction);
@@ -17,6 +18,7 @@ export const reviewsSlice = createSlice({
   initialState,
   reducers: {
     addReview: addReviewAction,
+    addVoted: addVotedAction,
   },
   extraReducers: (builder) => {
     builder.addCase(reviewsAsync.pending, (state) => {
@@ -32,6 +34,6 @@ export const reviewsSlice = createSlice({
   },
 });
 
-export const { addReview } = reviewsSlice.actions;
+export const { addReview, addVoted } = reviewsSlice.actions;
 
 export default reviewsSlice.reducer;

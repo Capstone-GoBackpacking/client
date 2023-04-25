@@ -13,7 +13,7 @@ import { CREATE_TRIP } from "src/graphql/trips";
 import Upload from "./upload/upload";
 
 const CreateTrip = () => {
-  const { type, from, to, start, end, name, slot, description } = useSelector(createTripSelector);
+  const { type, from, to, start, end, name, slot, description, thumbnail } = useSelector(createTripSelector);
 
   const [creatTrip, { data, loading, error }] = useMutation(CREATE_TRIP);
 
@@ -70,6 +70,8 @@ const CreateTrip = () => {
           timeStart: start,
           timeEnd: end,
           name: name,
+          thumbnail: thumbnail,
+          description: description,
         },
       },
     });

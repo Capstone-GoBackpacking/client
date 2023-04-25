@@ -85,9 +85,14 @@ const Trips = () => {
               tripData.trips.map((trip) => (
                 <div key={trip.id} className="mb-3">
                   <div className="flex">
-                    <img className="w-40 h-32" src={trip.thumbnail} alt={trip.id} />
+                    <img
+                      className="w-40 h-32"
+                      src={trip.thumbnail || "/assets/images/defaults/trip.jpeg"}
+                      alt={trip.id}
+                    />
                     <div className="flex-2 ml-3">
-                      <p className="font-bold text-xl">
+                      <p className="font-bold text-xl">{trip.name}</p>
+                      <p>
                         From: {trip.locationStart.name} - To: {trip.locationEnd.name}
                       </p>
                       <p>{trip.distance} km</p>
