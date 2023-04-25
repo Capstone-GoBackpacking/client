@@ -1,0 +1,13 @@
+#create-trip {
+  .p-fileupload-row {
+    > div {
+      > div {
+        width: 100% !important;
+        justify-content: center;
+        img {
+          width: 50% !important;
+        }
+      }
+    }
+  }
+}
