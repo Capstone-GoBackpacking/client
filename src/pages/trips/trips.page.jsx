@@ -4,37 +4,47 @@ import { useNavigate } from "react-router-dom";
 import { Button, LocationStory } from "src/components";
 import { Button as ButtonPrime } from "primereact/button";
 import { useMutation, useQuery } from "@apollo/client";
-import { JOIN_TRIP, TRIPS } from "src/graphql/trips";
-import { GrAddCircle } from "react-icons/gr";
-import { CreateTripRoute } from "src/routes/route-name";
+import { JOIN_TRIP, TRIPS, TRIPS_WITHOUT_TARGET } from "src/graphql/trips";
+import { GrAddCircle, GrTemplate } from "react-icons/gr";
+import { CreateTripRoute, GenerateTripRoute } from "src/routes/route-name";
 
 const Trips = () => {
   const navigate = useNavigate();
-  const { data: tripData, loading, error } = useQuery(TRIPS);
+  const {
+    data: tripData,
+    loading,
+    error,
+  } = useQuery(
+    localStorage.getItem("access_token") ? TRIPS : TRIPS_WITHOUT_TARGET
+  );
   const [joinTrip] = useMutation(JOIN_TRIP);
 
   const data = [
     {
       id: 1,
-      thumbnail: "https://tieudung.kinhtedothi.vn/upload_images/images/2020/06/25/du-lich-quy-nhon-binh-dinh_1.jpg",
+      thumbnail:
+        "https://tieudung.kinhtedothi.vn/upload_images/images/2020/06/25/du-lich-quy-nhon-binh-dinh_1.jpg",
       name: "Quy Nhon, Binh Dinh",
       rating: 5,
     },
     {
       id: 2,
-      thumbnail: "https://tieudung.kinhtedothi.vn/upload_images/images/2020/06/25/du-lich-quy-nhon-binh-dinh_1.jpg",
+      thumbnail:
+        "https://tieudung.kinhtedothi.vn/upload_images/images/2020/06/25/du-lich-quy-nhon-binh-dinh_1.jpg",
       name: "Quy Nhon, Binh Dinh",
       rating: 5,
     },
     {
       id: 3,
-      thumbnail: "https://tieudung.kinhtedothi.vn/upload_images/images/2020/06/25/du-lich-quy-nhon-binh-dinh_1.jpg",
+      thumbnail:
+        "https://tieudung.kinhtedothi.vn/upload_images/images/2020/06/25/du-lich-quy-nhon-binh-dinh_1.jpg",
       name: "Quy Nhon, Binh Dinh",
       rating: 5,
     },
     {
       id: 4,
-      thumbnail: "https://tieudung.kinhtedothi.vn/upload_images/images/2020/06/25/du-lich-quy-nhon-binh-dinh_1.jpg",
+      thumbnail:
+        "https://tieudung.kinhtedothi.vn/upload_images/images/2020/06/25/du-lich-quy-nhon-binh-dinh_1.jpg",
       name: "Quy Nhon, Binh Dinh",
       rating: 5,
     },
@@ -69,7 +79,9 @@ const Trips = () => {
           <div className="flex gap-10">
             <div>
               <label className="font-bold">Trips</label>
-              <p className="text-xs font-light">{tripData && tripData.trips.length} trips found</p>
+              <p className="text-xs font-light">
+                {tripData && tripData.trips.length} trips found
+              </p>
             </div>
             <div className="flex items-center">
               <ButtonPrime
@@ -79,6 +91,14 @@ const Trips = () => {
               />
               <label>New Your Trip</label>
             </div>
+            <div className="flex items-center">
+              <ButtonPrime
+                className="w-8 h-8 bg-white rounded-full border-0"
+                icon={GrTemplate}
+                onClick={() => navigate(`/${GenerateTripRoute}`)}
+              />
+              <label>Generate Template</label>
+            </div>
           </div>
           <div className="mt-3">
             {tripData &&
@@ -87,13 +107,16 @@ const Trips = () => {
                   <div className="flex">
                     <img
                       className="w-40 h-32"
-                      src={trip.thumbnail || "/assets/images/defaults/trip.jpeg"}
+                      src={
+                        trip.thumbnail || "/assets/images/defaults/trip.jpeg"
+                      }
                       alt={trip.id}
                     />
                     <div className="flex-2 ml-3">
                       <p className="font-bold text-xl">{trip.name}</p>
                       <p>
-                        From: {trip.locationStart.name} - To: {trip.locationEnd.name}
+                        From: {trip.locationStart.name} - To:{" "}
+                        {trip.locationEnd.name}
                       </p>
                       <p>{trip.distance} km</p>
                       <p>
@@ -107,13 +130,17 @@ const Trips = () => {
                           type="primary"
                           name="Join"
                           className="p-2 w-32"
-                          onClick={() =>
-                            joinTrip({
-                              variables: {
-                                input: trip.id,
-                              },
-                            })
-                          }
+                          onClick={() => {
+                            if (localStorage.getItem("access_token")) {
+                              joinTrip({
+                                variables: {
+                                  input: trip.id,
+                                },
+                              });
+                            } else {
+                              navigate("/login");
+                            }
+                          }}
                         />
                       )}
                       <Button

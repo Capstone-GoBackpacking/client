@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { ImageCarousel, Member } from "src/components";
 import { MyMap, Navbar, TripInfo } from "src/containers";
-import { GET_TRIP } from "src/graphql/trips";
+import { GET_TRIP, GET_TRIP_WITHOUT_AUTH } from "src/graphql/trips";
 import { IoMdChatboxes } from "react-icons/io";
 import { AiFillCamera } from "react-icons/ai";
 import { Marker, Polyline } from "react-leaflet";
@@ -12,11 +12,14 @@ const TripDetail = () => {
   const { tripId } = useParams();
   const navigate = useNavigate();
 
-  const { data, loading, error } = useQuery(GET_TRIP, {
-    variables: {
-      id: tripId,
-    },
-  });
+  const { data, loading, error } = useQuery(
+    localStorage.getItem("access_token") ? GET_TRIP : GET_TRIP_WITHOUT_AUTH,
+    {
+      variables: {
+        id: tripId,
+      },
+    }
+  );
 
   useEffect(() => {
     if (data?.isJoined) {
@@ -96,8 +99,14 @@ const TripDetail = () => {
                 <>
                   <Polyline
                     positions={[
-                      [data?.getTripById.locationStart.lat, data?.getTripById.locationStart.lng],
-                      [data?.getTripById.locationEnd.lat, data?.getTripById.locationEnd.lng],
+                      [
+                        data?.getTripById.locationStart.lat,
+                        data?.getTripById.locationStart.lng,
+                      ],
+                      [
+                        data?.getTripById.locationEnd.lat,
+                        data?.getTripById.locationEnd.lng,
+                      ],
                     ]}
                   />
                   <Marker
@@ -119,7 +128,10 @@ const TripDetail = () => {
           <div className="mt-5">
             <label>Host</label>
             <div className="mt-1">
-              <Member avatar={data?.getTripById.host.profile?.avatar} name={data?.getTripById.host.profile?.fullName} />
+              <Member
+                avatar={data?.getTripById.host.profile?.avatar}
+                name={data?.getTripById.host.profile?.fullName}
+              />
             </div>
           </div>
           <div className="mt-5">
@@ -127,7 +139,11 @@ const TripDetail = () => {
             <div className="mt-1">
               {data?.getTripById &&
                 data?.getTripById.joinedMember.map((member) => (
-                  <Member key={member.id} avatar={member.profile.avatar} name={member.profile.fullName} />
+                  <Member
+                    key={member.id}
+                    avatar={member.profile.avatar}
+                    name={member.profile.fullName}
+                  />
                 ))}
             </div>
           </div>

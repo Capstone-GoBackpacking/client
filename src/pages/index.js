@@ -15,6 +15,7 @@ import LocationDetailServices from "./location-detail/services/services";
 import TripDetail from "./trip-detail/trip-detail.page";
 import TripDetailImages from "./trip-detail/images/images";
 import TripDetailDiscussion from "./trip-detail/discussion/discussion";
+import GenerateTrip from "./generate-trip/generate-trip.page";
 
 export {
   Login,
@@ -34,4 +35,5 @@ export {
   TripDetail,
   TripDetailImages,
   TripDetailDiscussion,
+  GenerateTrip,
 };

@@ -21,7 +21,6 @@ export const LocationDetailRoute = {
     reviews: "reviews",
   },
 };
-
 export const TripDetailRoute = {
   path: "trips/:tripId",
   childs: {
@@ -29,3 +28,4 @@ export const TripDetailRoute = {
     discussion: "discussion",
   },
 };
+export const GenerateTripRoute = "generate-trip";

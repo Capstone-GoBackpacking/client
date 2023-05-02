@@ -29,6 +29,25 @@ export const TRIPS = gql`
   }
 `;
 
+export const TRIPS_WITHOUT_TARGET = gql`
+  query {
+    trips {
+      id
+      name
+      locationEnd {
+        name
+      }
+      locationStart {
+        name
+      }
+      timeEnd
+      timeStart
+      thumbnail
+      distance
+    }
+  }
+`;
+
 export const JOIN_TRIP = gql`
   mutation ($input: String!) {
     joinTrip(input: $input) {
@@ -42,6 +61,45 @@ export const JOIN_TRIP = gql`
 export const GET_TRIP = gql`
   query ($id: String!) {
     isJoined(input: $id)
+    getTripById(id: $id) {
+      id
+      name
+      thumbnail
+      locationStart {
+        id
+        name
+        lat
+        lng
+      }
+      locationEnd {
+        id
+        name
+        lat
+        lng
+      }
+      timeEnd
+      timeStart
+      host {
+        id
+        profile {
+          avatar
+          fullName
+        }
+      }
+      joinedMember {
+        id
+        profile {
+          avatar
+          fullName
+        }
+      }
+      distance
+    }
+  }
+`;
+
+export const GET_TRIP_WITHOUT_AUTH = gql`
+  query ($id: String!) {
     getTripById(id: $id) {
       id
       name

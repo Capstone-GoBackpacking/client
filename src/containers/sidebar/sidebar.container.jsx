@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { SideBarModule } from "src/components";
+import { FiLogOut } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const View = () => {
   const [target, setTarget] = useState(null);
   const [childs, setChilds] = useState([]);
+  const navigate = useNavigate();
 
   const modules = [
     {
@@ -44,13 +47,22 @@ const View = () => {
     setTarget(e);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    navigate("/login");
+  };
+
   return (
     <div className="fixed flex md:top-0 z-0 opacity-100 w-full transition-all duration-300 md:sticky md:h-screen md:w-auto md:min-w-min">
-      <div className="md:w-64 pl-3 md:pl-8 pt-4">
+      <div className="md:w-64 pl-3 md:pl-8 py-4 flex flex-col">
         <div className="pl-5 py-2 md:py-4">
-          <img src="/assets/images/logo.png" alt="logo" className="hidden md:block w-32" />
+          <img
+            src="/assets/images/logo.png"
+            alt="logo"
+            className="hidden md:block w-32"
+          />
         </div>
-        <div className="pr-3">
+        <div className="pr-3 flex-1">
           {modules.map((module) => (
             <SideBarModule
               target={target}
@@ -65,6 +77,12 @@ const View = () => {
             />
           ))}
         </div>
+        <button
+          className="flex bg-primary text-white p-2 rounded-sm items-center justify-center gap-2"
+          onClick={handleLogout}
+        >
+          <FiLogOut className="w-6 h-6" /> Logout
+        </button>
       </div>
     </div>
   );
