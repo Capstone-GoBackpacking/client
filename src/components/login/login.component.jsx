@@ -1,30 +1,23 @@
 import React from "react";
-import heroImage from "../../assets/images/hero-image.png"
+import heroImage from "../../assets/images/hero-image.png";
+import { Link } from "react-router-dom";
 
 const Login = ({ data, onInput, onSubmit }) => {
   return (
     <div className="flex h-screen justify-center ">
       <div className="sm:hidden lg:block w-1/2 h-screen">
-        <img className="w-full h-screen "
-          src={heroImage}
-          alt="image-hero"
-        />
+        <img className="w-full h-screen " src={heroImage} alt="image-hero" />
       </div>
       <div className="w-1/2 px-20">
         <div className="mt-10 mb-14">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">
             Welcome to
           </h2>
-          <h2 className="text-primary text-3xl">
-            Go Backpacking
-          </h2>
+          <h2 className="text-primary text-3xl">Go Backpacking</h2>
         </div>
         <div className="-space-y-px rounded-md">
           <div className="pb-4">
-            <label
-              htmlFor="email-address"
-              className="sr-only"
-            >
+            <label htmlFor="email-address" className="sr-only">
               Email
             </label>
             <input
@@ -40,10 +33,7 @@ const Login = ({ data, onInput, onSubmit }) => {
             />
           </div>
           <div className="pb-4">
-            <label
-              htmlFor="email-address"
-              className="sr-only"
-            >
+            <label htmlFor="email-address" className="sr-only">
               Password
             </label>
             <input
@@ -57,15 +47,12 @@ const Login = ({ data, onInput, onSubmit }) => {
               onChange={(e) => onInput(e.target.name, e.target.value)}
             />
           </div>
-
         </div>
         <div className="my-10">
           <input className="h-4 w-4 mr-2" type="checkbox" id="userRemember" />
           <label htmlFor="userRemember">Remember me</label>
           <div className="float-right">
-            <a href="">
-              Forgot Password?
-            </a>
+            <a href="">Forgot Password?</a>
           </div>
         </div>
         <div className="my-10">
@@ -80,15 +67,15 @@ const Login = ({ data, onInput, onSubmit }) => {
         <div className="flex justify-center text-sm">
           <span>
             Don't have an account?
-            <a className="text-primary" href="register.component.jsx">
+            <Link className="text-primary" to="/register">
               {" "}
               Register
-            </a>
+            </Link>
           </span>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

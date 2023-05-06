@@ -125,7 +125,7 @@ const Trips = () => {
                       </p>
                     </div>
                     <div className="flex-1 flex flex-col items-center justify-evenly">
-                      {trip.targetJoined || (
+                      {trip.isHost || trip.targetJoined || (
                         <Button
                           type="primary"
                           name="Join"

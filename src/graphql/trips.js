@@ -14,6 +14,7 @@ export const TRIPS = gql`
     trips {
       id
       name
+      isHost
       targetJoined
       locationEnd {
         name
@@ -61,6 +62,7 @@ export const JOIN_TRIP = gql`
 export const GET_TRIP = gql`
   query ($id: String!) {
     isJoined(input: $id)
+    isHost(input: $id)
     getTripById(id: $id) {
       id
       name
@@ -131,6 +133,35 @@ export const GET_TRIP_WITHOUT_AUTH = gql`
           avatar
           fullName
         }
+      }
+      distance
+    }
+  }
+`;
+
+export const GENERATE_TEMPLATE = gql`
+  mutation ($input: GenerateTemplateInput!) {
+    generateTemplate(input: $input) {
+      id
+      name
+      locationEnd {
+        id
+        name
+        lat
+        lng
+      }
+      locationStart {
+        id
+        name
+        lat
+        lng
+      }
+      slot
+      timeEnd
+      timeStart
+      type {
+        id
+        name
       }
       distance
     }

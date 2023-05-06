@@ -61,7 +61,7 @@ const TripDetail = () => {
       label: "Discussion",
       icon: IoMdChatboxes,
       path: `/trips/${tripId}/discussion`,
-      status: data?.isJoined ? "enable" : "disable",
+      status: data?.isHost || data?.isJoined ? "enable" : "disable",
     },
     {
       label: "Images",

@@ -15,6 +15,7 @@ import SideBarModule from "./sidebarModule/sidebarModule.component";
 import Post from "./post/post.component";
 import Member from "./member/member.component";
 import Comment from "./comment/comment.component";
+import TripTemplate from "./tripTemplate/tripTemplate.component";
 
 export {
   Register,
@@ -34,4 +35,5 @@ export {
   Post,
   Member,
   Comment,
+  TripTemplate,
 };

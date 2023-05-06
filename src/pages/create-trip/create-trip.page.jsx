@@ -13,9 +13,10 @@ import { CREATE_TRIP } from "src/graphql/trips";
 import Upload from "./upload/upload";
 
 const CreateTrip = () => {
-  const { type, from, to, start, end, name, slot, description, thumbnail } = useSelector(createTripSelector);
+  const { type, from, to, start, end, name, slot, description, thumbnail } =
+    useSelector(createTripSelector);
 
-  const [creatTrip, { data, loading, error }] = useMutation(CREATE_TRIP);
+  const [createTrip, { data, loading, error }] = useMutation(CREATE_TRIP);
 
   const events = [
     {
@@ -60,7 +61,7 @@ const CreateTrip = () => {
   };
 
   const handleSubmitCreateTrip = () => {
-    creatTrip({
+    createTrip({
       variables: {
         input: {
           typeId: type,
@@ -80,10 +81,19 @@ const CreateTrip = () => {
   return (
     <div className="my-10 w-11/12 m-auto">
       <div id="create-trip" className="">
-        <Timeline value={events} marker={customizedMarker} content={customizedContent} />
+        <Timeline
+          value={events}
+          marker={customizedMarker}
+          content={customizedContent}
+        />
       </div>
       <div className="pb-10">
-        <Button type="primary" name="Create trip" className="px-4 py-2 float-right" onClick={handleSubmitCreateTrip} />
+        <Button
+          type="primary"
+          name="Create trip"
+          className="px-4 py-2 float-right"
+          onClick={handleSubmitCreateTrip}
+        />
       </div>
     </div>
   );
