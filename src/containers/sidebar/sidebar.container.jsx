@@ -2,11 +2,14 @@ import { useState } from "react";
 import { SideBarModule } from "src/components";
 import { FiLogOut } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { AUTH } from "src/graphql/auths";
 
 const View = () => {
   const [target, setTarget] = useState(null);
   const [childs, setChilds] = useState([]);
   const navigate = useNavigate();
+  const { data: auth } = useQuery(AUTH);
 
   const modules = [
     {
@@ -40,6 +43,14 @@ const View = () => {
       icon: "market.svg",
       hasChild: false,
       path: "market",
+    },
+    {
+      id: 5,
+      key: "profile",
+      name: "Profile",
+      icon: "profile.svg",
+      hasChild: false,
+      path: `profile/${auth?.currentAccount.id}`,
     },
   ];
 

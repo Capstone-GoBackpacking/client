@@ -1,20 +1,25 @@
 import { AiFillStar } from "react-icons/ai";
 import { Button } from "src/components";
-import avatar from "src/assets/images/avatar.png";
+import defaultAvatar from "src/assets/images/avatar.png";
 
-const ProfileInfoContainer = () => {
+const ProfileInfoContainer = ({ avatar, fullName, birthday, star, email }) => {
   return (
     <div className="border-b py-5">
       <div className="flex w-11/12 m-auto gap-x-3">
         <div>
-          <img src={avatar} className="w-40 h-40" alt="avatar" />
+          <img
+            src={avatar || defaultAvatar}
+            className="w-40 h-40"
+            alt="avatar"
+          />
         </div>
         <div className="flex flex-col gap-3 justify-center flex-2">
-          <h2>Viet Anh Le</h2>
-          <p>18/8/2001</p>
+          <h2>{fullName || "Who are you?"}</h2>
+          <p>{email}</p>
+          <p>{birthday}</p>
           <div className="flex items-center">
             <AiFillStar className="text-yellow-300" />
-            <span>10</span>
+            <span>{star || 0}</span>
           </div>
         </div>
         <div className="flex-1">

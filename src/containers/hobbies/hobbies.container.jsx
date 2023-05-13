@@ -1,47 +1,41 @@
-import { useState } from "react"
-import { Hobby } from "src/components"
+import { useMutation, useQuery } from "@apollo/client";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Hobby } from "src/components";
+import { ASIGN_HOBBIES } from "src/graphql/accounts";
+import { HOBBIES } from "src/graphql/hobbies";
 
 const HobbiesContainer = () => {
-  const [checked, setChecked] = useState([])
+  const { id } = useParams();
+  const [checked, setChecked] = useState([]);
+  const [asignHobbies] = useMutation(ASIGN_HOBBIES);
+  const navigate = useNavigate();
+  const { data: hobbies } = useQuery(HOBBIES);
 
   const handleCheck = (id) => {
     if (checked.includes(id)) {
-      setChecked(checked.filter(check => check !== id))
+      setChecked(checked.filter((check) => check !== id));
     } else {
-      setChecked(state => [...state, id])
+      setChecked((state) => [...state, id]);
     }
-  }
+  };
 
-  const hobbies = [
-    {
-      id: '1',
-      name: "Hiking"
-    },
-    {
-      id: '2',
-      name: 'Traveling'
-    },
-    {
-      id: '3',
-      name: 'Backpacking'
-    },
-    {
-      id: '4',
-      name: 'Mountaineering'
-    },
-    {
-      id: '5',
-      name: 'Rock Climbing'
-    },
-    {
-      id: '6',
-      name: 'Cities'
-    },
-    {
-      id: '7',
-      name: 'Camping'
+  const submit = async () => {
+    if (checked.length > 0) {
+      console.log(checked);
+      const { data } = await asignHobbies({
+        variables: {
+          input: {
+            id,
+            hobbies: checked,
+          },
+        },
+      });
+      if (data.asignHobbies.id) {
+        navigate("/login");
+      }
     }
-  ]
+  };
 
   return (
     <div className="flex flex-col items-center">
@@ -51,7 +45,7 @@ const HobbiesContainer = () => {
       </div>
       <div className="border-solid border-[1px] border-[#eeeeee] w-4/5 mb-10"></div>
       <div className="flex flex-wrap w-3/4">
-        {hobbies.map((hobby) => (
+        {hobbies?.hobbies.map((hobby) => (
           <Hobby
             key={hobby.id}
             id={hobby.id}
@@ -63,12 +57,15 @@ const HobbiesContainer = () => {
       </div>
       <div className="border-solid border-[1px] border-[#eeeeee] w-4/5 mt-10"></div>
       <div>
-        <div className="cursor-pointer absolute right-60 float-right flex mt-10 px-5 py-4 bg-primary justify-center items-center rounded-full w-48 text-white">
+        <button
+          onClick={submit}
+          className="cursor-pointer absolute right-60 float-right flex mt-10 px-5 py-4 bg-primary justify-center items-center rounded-full w-48 text-white"
+        >
           Next
-        </div>
+        </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HobbiesContainer
+export default HobbiesContainer;

@@ -1,7 +1,7 @@
 export const RootRoute = "/";
 export const LoginRoute = "login";
 export const RegisterRoute = "register";
-export const HobbiesRoute = "hobbies";
+export const HobbiesRoute = "hobbies/:id";
 export const CreateTripRoute = "create-trip";
 export const ProfileRoute = {
   path: "profile/:profileId",
