@@ -52,6 +52,7 @@ export default createBrowserRouter(
             element={<ProfileImages />}
           />
           <Route
+            index
             path={ProfileRoute.childs.trips}
             element={<ProfileMyTrips />}
           />

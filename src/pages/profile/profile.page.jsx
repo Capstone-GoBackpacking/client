@@ -1,7 +1,6 @@
 import { FaCarSide } from "react-icons/fa";
 import { AiFillCamera, AiTwotoneShop } from "react-icons/ai";
 import { ProfileInfo, Navbar } from "src/containers";
-import { ProfileRoute } from "src/routes/route-name";
 import { Outlet, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { ACCOUNT } from "src/graphql/accounts";
@@ -20,19 +19,19 @@ const Profile = () => {
     {
       label: "My Trips",
       icon: FaCarSide,
-      path: `/${ProfileRoute.path}/${ProfileRoute.childs.trips}`,
+      path: `/profile/${profileId}/trips`,
       status: auth?.currentAccount.id === profileId ? "enable" : "disable",
     },
     {
       label: "Images",
       icon: AiFillCamera,
-      path: `/${ProfileRoute.path}/${ProfileRoute.childs.images}`,
+      path: `/profile/${profileId}/images`,
       status: "enable",
     },
     {
       label: "Shop",
       icon: AiTwotoneShop,
-      path: `/${ProfileRoute.path}/${ProfileRoute.childs.shop}`,
+      path: `/profile/${profileId}/shop`,
       status: "enable",
     },
   ];

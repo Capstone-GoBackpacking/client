@@ -1,38 +1,51 @@
-import { Button } from 'primereact/button'
-import { GrAddCircle } from 'react-icons/gr'
-import { CiSearch } from 'react-icons/ci'
-import { InputText } from 'primereact/inputtext'
-import { Tree } from 'primereact/tree'
-import { MyTrips as MyTripsContainer } from 'src/containers'
+import { Button } from "primereact/button";
+import { GrAddCircle } from "react-icons/gr";
+import { CiSearch } from "react-icons/ci";
+import { InputText } from "primereact/inputtext";
+import { Tree } from "primereact/tree";
+import { MyTrips as MyTripsContainer } from "src/containers";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { TRIPS_OF_ACCOUNT } from "src/graphql/trips";
 
 const MyTrips = () => {
+  const { profileId } = useParams();
+  const { data: trips } = useQuery(TRIPS_OF_ACCOUNT, {
+    variables: {
+      input: profileId,
+    },
+  });
+
   const filterOptions = [
     {
-      key: '0',
-      label: 'Status',
+      key: "0",
+      label: "Status",
       children: [
         {
-          key: '0-0',
-          label: 'Enable',
+          key: "0-0",
+          label: "Enable",
         },
         {
-          key: '0-1',
-          label: 'Disable'
+          key: "0-1",
+          label: "Disable",
         },
         {
-          key: '0-2',
-          label: 'Pending'
-        }
-      ]
-    }
-  ]
+          key: "0-2",
+          label: "Pending",
+        },
+      ],
+    },
+  ];
 
   return (
     <>
       <div className="md:flex">
         <div className="flex flex-1 gap-5">
           <div className="flex items-center">
-            <Button className="w-8 h-8 bg-white rounded-full border-0" icon={GrAddCircle} />
+            <Button
+              className="w-8 h-8 bg-white rounded-full border-0"
+              icon={GrAddCircle}
+            />
             <label>New</label>
           </div>
           <div>
@@ -42,19 +55,18 @@ const MyTrips = () => {
             </span>
           </div>
         </div>
-        <div className="flex-1">
-        </div>
+        <div className="flex-1"></div>
       </div>
       <div className="flex gap-5 mt-5">
-        <div className='flex-1'>
+        <div className="flex-1">
           <Tree value={filterOptions} />
         </div>
         <div className="flex-3">
-          <MyTripsContainer />
+          <MyTripsContainer data={trips?.tripsOfHost} />
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default MyTrips
+export default MyTrips;

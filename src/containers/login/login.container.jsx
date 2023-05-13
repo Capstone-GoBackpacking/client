@@ -14,24 +14,29 @@ const LoginContainer = () => {
     password: "",
   });
 
-  if (data) {
-    localStorage.setItem("access_token", data.login.access_token);
-    navigate("/trips");
-  }
-
-  const handleSubmitLogin = () => {
+  const handleSubmitLogin = async () => {
     if (loginData.email && loginData.password) {
-      login({
+      const { data } = await login({
         variables: {
           input: loginData,
         },
       });
+      if (data.login.access_token) {
+        localStorage.setItem("access_token", data.login.access_token);
+        navigate("/trips");
+      }
     } else {
       console.log(error);
     }
   };
 
-  return <Login data={loginData} onInput={setValueForState(setLoginData)} onSubmit={handleSubmitLogin} />;
+  return (
+    <Login
+      data={loginData}
+      onInput={setValueForState(setLoginData)}
+      onSubmit={handleSubmitLogin}
+    />
+  );
 };
 
 export default LoginContainer;

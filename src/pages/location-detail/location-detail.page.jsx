@@ -5,8 +5,8 @@ import { BsFillChatRightDotsFill } from "react-icons/bs";
 import { Outlet } from "react-router-dom";
 import { Marker } from "react-leaflet";
 import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { GET_LOCATION } from "src/graphql/locations";
+import { useMutation, useQuery } from "@apollo/client";
+import { FAVORITE, GET_LOCATION } from "src/graphql/locations";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -17,6 +17,8 @@ const LocationDetail = () => {
   const { data, loading, error } = useQuery(GET_LOCATION, {
     variables: { id: locationId },
   });
+
+  const [favoriting] = useMutation(FAVORITE);
 
   useEffect(() => {
     navigate(`/locations/${locationId}/reviews`);
@@ -96,7 +98,13 @@ const LocationDetail = () => {
     },
   ];
 
-  const handleLike = () => {};
+  const handleLike = () => {
+    favoriting({
+      variables: {
+        input: locationId,
+      },
+    });
+  };
 
   const handleShare = () => {};
 

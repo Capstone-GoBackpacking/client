@@ -167,3 +167,29 @@ export const GENERATE_TEMPLATE = gql`
     }
   }
 `;
+
+export const TRIPS_OF_ACCOUNT = gql`
+  query ($input: String!) {
+    tripsOfHost(input: $input) {
+      id
+      name
+      thumbnail
+      locationStart {
+        name
+      }
+      locationEnd {
+        name
+      }
+      timeEnd
+      timeStart
+      host {
+        profile {
+          fullName
+        }
+      }
+      slot
+      joined
+      distance
+    }
+  }
+`;

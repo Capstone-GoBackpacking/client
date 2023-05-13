@@ -2,7 +2,8 @@ import { IoMdPerson } from "react-icons/io";
 import { MdGroup } from "react-icons/md";
 import { Button, StatusBox } from "..";
 import { VscCalendar } from "react-icons/vsc";
-import { GiPathDistance } from 'react-icons/gi'
+import { GiPathDistance } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 const Trip = ({
   id,
@@ -16,7 +17,7 @@ const Trip = ({
   joined,
   verified,
   direction = "horizontal",
-  distance
+  distance,
 }) => {
   if (direction === "horizontal") {
     return (
@@ -28,10 +29,12 @@ const Trip = ({
         />
         <div className="flex-2 overflow-hidden">
           <h3 className="inline-block font-bold text-lg truncate w-11/12 cursor-pointer hover:text-primary">
-            From: {from} - To: {to}
+            <Link to={`/trips/${id}`}>
+              From: {from} - To: {to}
+            </Link>
           </h3>
           <span className="flex items-center gap-1">
-            <GiPathDistance/>
+            <GiPathDistance />
             <p>{distance} km</p>
           </span>
           <span className="flex items-center gap-1">
@@ -70,7 +73,7 @@ const Trip = ({
             <p className="text-base">To: {to}</p>
           </h3>
           <span className="flex items-center gap-1">
-            <GiPathDistance/>
+            <GiPathDistance />
             <p>{distance} km</p>
           </span>
           <span className="flex items-center gap-1">
@@ -86,8 +89,8 @@ const Trip = ({
             </span>
           </p>
           <div className="flex items-center justify-evenly py-2">
-            <Button type="primary" name="Join" className="px-4 py-1"/>
-            <Button type="primary" name="Detail" className="px-4 py-1"/>
+            <Button type="primary" name="Join" className="px-4 py-1" />
+            <Button type="primary" name="Detail" className="px-4 py-1" />
           </div>
         </div>
       </div>

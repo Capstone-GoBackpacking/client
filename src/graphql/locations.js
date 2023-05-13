@@ -28,3 +28,11 @@ export const GET_LOCATION = gql`
     }
   }
 `;
+
+export const FAVORITE = gql`
+  mutation ($input: String!) {
+    favoriting(input: $input) {
+      id
+    }
+  }
+`;
