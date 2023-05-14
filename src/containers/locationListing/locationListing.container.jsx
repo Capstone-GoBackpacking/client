@@ -2,20 +2,31 @@ import React, { useState } from "react";
 import { LocationCard, Tag } from "src/components";
 import { InputText } from "primereact/inputtext";
 
-const LocationListingContainer = ({ locations, tags }) => {
-  const [searchInput, setSearchInput] = useState("");
-
+const LocationListingContainer = ({
+  locations,
+  tags,
+  onSelectTag,
+  onChangeName,
+}) => {
+  const [nameSearch, setNameSearch] = useState("");
   return (
     <div className="grid grid-cols-1">
       <div className="flex gap-x-2">
         <div className="overflow-x-auto flex items-center gap-x-5 flex-2">
-          {tags.map((tag, index) => {
-            return <Tag key={index} tag={tag} />;
+          {tags?.map((tag) => {
+            return (
+              <Tag
+                key={tag.id}
+                tag={tag.name}
+                onClick={() => onSelectTag(tag.id)}
+              />
+            );
           })}
         </div>
         <InputText
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
+          value={nameSearch}
+          onChange={(e) => setNameSearch(e.target.value)}
+          onKeyDown={(e) => onChangeName(e)}
           className="flex-1"
         />
       </div>

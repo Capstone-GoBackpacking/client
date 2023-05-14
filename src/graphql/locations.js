@@ -59,3 +59,17 @@ export const UNFAVORITE = gql`
     unFavorite(input: $input)
   }
 `;
+
+export const SEARCH_LOCATION = gql`
+  query ($input: SearchLocationInput!) {
+    searchLocation(input: $input) {
+      id
+      name
+      address
+      lat
+      lng
+      description
+      thumbnail
+    }
+  }
+`;
