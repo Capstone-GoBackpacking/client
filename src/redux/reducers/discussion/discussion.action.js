@@ -17,12 +17,21 @@ export const addPost = (state, action) => {
 export const postsAsync = async (tripId, _thunkAPI) => {
   try {
     const response = await axios
-      .post("http://localhost:3000/graphql", {
-        query: POSTS_OF_TRIP_STRING,
-        variables: {
-          input: tripId,
+      .post(
+        "http://localhost:3000/graphql",
+        {
+          query: POSTS_OF_TRIP_STRING,
+          variables: {
+            input: tripId,
+          },
         },
-      })
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      )
       .then((res) => {
         const { data } = res.data;
         return data.postsOfTrip;

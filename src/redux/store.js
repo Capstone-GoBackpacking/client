@@ -3,6 +3,7 @@ import {
   createTripReducer,
   discussionReducer,
   reviewsReducer,
+  locationReducer,
 } from "./reducers";
 
 export default configureStore({
@@ -10,5 +11,6 @@ export default configureStore({
     createTrip: createTripReducer,
     reviews: reviewsReducer,
     discussion: discussionReducer,
+    location: locationReducer,
   },
 });

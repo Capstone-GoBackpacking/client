@@ -1,12 +1,25 @@
 import { AiTwotoneHeart } from "react-icons/ai";
 import { IoIosShareAlt } from "react-icons/io";
 
-const LocationInfo = ({ thumbnail, name, tags, lat, lng, onLike, onShare }) => {
+const LocationInfo = ({
+  thumbnail,
+  name,
+  tags,
+  lat,
+  lng,
+  onLike,
+  onShare,
+  isFavoriting,
+}) => {
   return (
     <div className="border-b">
       <div className="flex gap-2 md:gap-5 lg:gap-8">
         <div>
-          <img src={thumbnail || "/assets/images/defaults/location.png"} alt={name} className="w-28 h-28" />
+          <img
+            src={thumbnail || "/assets/images/defaults/location.png"}
+            alt={name}
+            className="w-28 h-28"
+          />
         </div>
         <div>
           <h1 className="text-lg md:text-xl lg:text-2xl">{name}</h1>
@@ -23,7 +36,12 @@ const LocationInfo = ({ thumbnail, name, tags, lat, lng, onLike, onShare }) => {
         </div>
       </div>
       <div className="flex gap-5 py-4">
-        <AiTwotoneHeart className="cursor-pointer" onClick={() => onLike()} />
+        <AiTwotoneHeart
+          className={`cursor-pointer ${
+            isFavoriting ? "text-red-700" : "text-gray-500"
+          }`}
+          onClick={() => onLike()}
+        />
         <IoIosShareAlt className="cursor-pointer" onClick={() => onShare()} />
       </div>
     </div>

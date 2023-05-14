@@ -6,23 +6,35 @@ import { Outlet } from "react-router-dom";
 import { Marker } from "react-leaflet";
 import { useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
-import { FAVORITE, GET_LOCATION } from "src/graphql/locations";
+import { FAVORITE, GET_LOCATION, UNFAVORITE } from "src/graphql/locations";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  targetLocation,
+  toggleFavorite,
+} from "src/redux/reducers/locations/locations.reducer";
+import locationsSelector from "src/redux/reducers/locations/locations.selector";
 
 const LocationDetail = () => {
   const { locationId } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { target, isFavorited } = useSelector(locationsSelector);
 
   const { data, loading, error } = useQuery(GET_LOCATION, {
     variables: { id: locationId },
   });
 
   const [favoriting] = useMutation(FAVORITE);
+  const [unFavorite] = useMutation(UNFAVORITE);
 
   useEffect(() => {
+    if (data) {
+      dispatch(targetLocation(data));
+    }
     navigate(`/locations/${locationId}/reviews`);
-  }, []);
+  }, [data]);
 
   const images = [
     {
@@ -98,12 +110,22 @@ const LocationDetail = () => {
     },
   ];
 
-  const handleLike = () => {
-    favoriting({
-      variables: {
-        input: locationId,
-      },
-    });
+  const handleLike = async () => {
+    if (isFavorited) {
+      await unFavorite({
+        variables: {
+          input: locationId,
+        },
+      });
+      dispatch(toggleFavorite(false));
+    } else {
+      await favoriting({
+        variables: {
+          input: locationId,
+        },
+      });
+      dispatch(toggleFavorite(true));
+    }
   };
 
   const handleShare = () => {};
@@ -113,13 +135,14 @@ const LocationDetail = () => {
       <ImageCarousel data={images} />
       <div className="flex gap-2">
         <div className="flex-2">
-          {data?.getLocationById && (
+          {target && (
             <LocationInfo
-              thumbnail={data?.getLocationById.thumbnail}
-              name={data?.getLocationById.name}
-              tags={data?.getLocationById.tags}
-              lat={data?.getLocationById.lat}
-              lng={data?.getLocationById.lng}
+              isFavoriting={isFavorited}
+              thumbnail={target.thumbnail}
+              name={target.name}
+              tags={target.tags}
+              lat={target.lat}
+              lng={target.lng}
               onLike={handleLike}
               onShare={handleShare}
             />
@@ -132,11 +155,11 @@ const LocationDetail = () => {
         <div className="flex-1">
           <div className="h-80">
             <MyMap>
-              {data?.getLocationById && (
+              {target && (
                 <Marker
                   position={{
-                    lat: data?.getLocationById.lat,
-                    lng: data?.getLocationById.lng,
+                    lat: target.lat,
+                    lng: target.lng,
                   }}
                 ></Marker>
               )}

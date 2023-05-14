@@ -16,6 +16,23 @@ export const LOCATIONS = gql`
 
 export const GET_LOCATION = gql`
   query ($id: String!) {
+    isFavoriting(input: $id)
+    getLocationById(id: $id) {
+      name
+      lat
+      lng
+      thumbnail
+      tags {
+        id
+        name
+      }
+    }
+  }
+`;
+
+export const GET_LOCATION_STRING = `
+  query ($id: String!) {
+    isFavoriting(input: $id)
     getLocationById(id: $id) {
       name
       lat
@@ -34,5 +51,11 @@ export const FAVORITE = gql`
     favoriting(input: $input) {
       id
     }
+  }
+`;
+
+export const UNFAVORITE = gql`
+  mutation ($input: String!) {
+    unFavorite(input: $input)
   }
 `;
