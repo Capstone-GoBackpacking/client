@@ -35,6 +35,7 @@ import {
   TripDetailImages,
   TripDetailDiscussion,
   GenerateTrip,
+  ProfileRequests,
 } from "src/pages";
 import App from "../App";
 import { MainLayout } from "src/layouts";
@@ -57,6 +58,10 @@ export default createBrowserRouter(
             element={<ProfileMyTrips />}
           />
           <Route path={ProfileRoute.childs.shop} element={<ProfileShop />} />
+          <Route
+            path={ProfileRoute.childs.requests}
+            element={<ProfileRequests />}
+          />
         </Route>
         <Route path={CreateTripRoute} element={<CreateTrip />} />
         <Route index path={TripsRoute} element={<Trips />} />

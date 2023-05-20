@@ -7,51 +7,35 @@ import { useMutation, useQuery } from "@apollo/client";
 import { JOIN_TRIP, TRIPS, TRIPS_WITHOUT_TARGET } from "src/graphql/trips";
 import { GrAddCircle, GrTemplate } from "react-icons/gr";
 import { CreateTripRoute, GenerateTripRoute } from "src/routes/route-name";
+import { useRef, useState } from "react";
+import { Toast } from "primereact/toast";
+import { TOP_LOCATION } from "src/graphql/locations";
 
 const Trips = () => {
   const navigate = useNavigate();
-  const {
-    data: tripData,
-    loading,
-    error,
-  } = useQuery(
-    localStorage.getItem("access_token") ? TRIPS : TRIPS_WITHOUT_TARGET
+  const { data } = useQuery(
+    localStorage.getItem("access_token") ? TRIPS : TRIPS_WITHOUT_TARGET,
+    {
+      fetchPolicy: "network-only",
+    }
   );
+  const { data: dataL } = useQuery(TOP_LOCATION, {
+    variables: {
+      input: {
+        top: 5,
+        direction: "desc",
+      },
+    },
+    fetchPolicy: "network-only",
+  });
   const [joinTrip] = useMutation(JOIN_TRIP);
+  const [inputSearch, setInputSearch] = useState("");
 
-  const data = [
-    {
-      id: 1,
-      thumbnail:
-        "https://tieudung.kinhtedothi.vn/upload_images/images/2020/06/25/du-lich-quy-nhon-binh-dinh_1.jpg",
-      name: "Quy Nhon, Binh Dinh",
-      rating: 5,
-    },
-    {
-      id: 2,
-      thumbnail:
-        "https://tieudung.kinhtedothi.vn/upload_images/images/2020/06/25/du-lich-quy-nhon-binh-dinh_1.jpg",
-      name: "Quy Nhon, Binh Dinh",
-      rating: 5,
-    },
-    {
-      id: 3,
-      thumbnail:
-        "https://tieudung.kinhtedothi.vn/upload_images/images/2020/06/25/du-lich-quy-nhon-binh-dinh_1.jpg",
-      name: "Quy Nhon, Binh Dinh",
-      rating: 5,
-    },
-    {
-      id: 4,
-      thumbnail:
-        "https://tieudung.kinhtedothi.vn/upload_images/images/2020/06/25/du-lich-quy-nhon-binh-dinh_1.jpg",
-      name: "Quy Nhon, Binh Dinh",
-      rating: 5,
-    },
-  ];
+  const toastRef = useRef(null);
 
   return (
     <div className="w-11/12 m-auto">
+      <Toast ref={toastRef} />
       <div className="flex justify-between mt-10">
         <div>
           <h2 className="font-bold mb-2">Hello, Viet Anh Le!</h2>
@@ -59,17 +43,22 @@ const Trips = () => {
         </div>
         <div className="flex items-center">
           <CiSearch className="h-6 w-6 mr-4" />
-          <InputText className="pt-1 w-96" />
+          <InputText
+            className="pt-1 w-96"
+            value={inputSearch}
+            onChange={(e) => setInputSearch(e.target.value)}
+          />
         </div>
       </div>
       <div className="flex justify-around mt-8">
-        {data.map((location) => {
+        {dataL?.directionFavorite?.map((location) => {
           return (
             <LocationStory
+              id={location.id}
               key={location.id}
               thumbnail={location.thumbnail}
               name={location.name}
-              rating={location.rating}
+              rating={location.favoriteNumber}
             />
           );
         })}
@@ -80,7 +69,7 @@ const Trips = () => {
             <div>
               <label className="font-bold">Trips</label>
               <p className="text-xs font-light">
-                {tripData && tripData.trips.length} trips found
+                {data && data.trips?.length} trips found
               </p>
             </div>
             <div className="flex items-center">
@@ -101,8 +90,8 @@ const Trips = () => {
             </div>
           </div>
           <div className="mt-3">
-            {tripData &&
-              tripData.trips.map((trip) => (
+            {data &&
+              data.trips?.map((trip) => (
                 <div key={trip.id} className="mb-3">
                   <div className="flex">
                     <img
@@ -130,13 +119,24 @@ const Trips = () => {
                           type="primary"
                           name="Join"
                           className="p-2 w-32"
-                          onClick={() => {
+                          onClick={async () => {
                             if (localStorage.getItem("access_token")) {
-                              joinTrip({
+                              const response = await joinTrip({
                                 variables: {
                                   input: trip.id,
                                 },
                               });
+                              if (response.data) {
+                                toastRef.current.show({
+                                  severity: "success",
+                                  summary: "Success",
+                                  detail: "Join",
+                                  life: 3000,
+                                });
+                                setTimeout(() => {
+                                  navigate(`/trips/${trip.id}`);
+                                }, 3000);
+                              }
                             } else {
                               navigate("/login");
                             }

@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes";
+import "boxicons";
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 

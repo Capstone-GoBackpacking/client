@@ -1,5 +1,9 @@
 import { FaCarSide } from "react-icons/fa";
-import { AiFillCamera, AiTwotoneShop } from "react-icons/ai";
+import {
+  AiFillCamera,
+  AiTwotoneShop,
+  AiOutlinePullRequest,
+} from "react-icons/ai";
 import { ProfileInfo, Navbar } from "src/containers";
 import { Outlet, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
@@ -33,6 +37,12 @@ const Profile = () => {
       icon: AiTwotoneShop,
       path: `/profile/${profileId}/shop`,
       status: "enable",
+    },
+    {
+      label: "Request",
+      icon: AiOutlinePullRequest,
+      path: `/profile/${profileId}/requests`,
+      status: auth?.currentAccount.id === profileId ? "enable" : "disable",
     },
   ];
 

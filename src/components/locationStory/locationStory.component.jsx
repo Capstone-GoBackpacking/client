@@ -1,9 +1,13 @@
 import React from "react";
 import starFilter from "../../assets/images/Star Filled.png";
+import { Link } from "react-router-dom";
 
-const LocationStory = ({ thumbnail, name, rating }) => {
+const LocationStory = ({ id, thumbnail, name, rating }) => {
   return (
-    <div className="flex relative w-[248px] h-[324px] rounded-lg overflow-hidden cursor-pointer">
+    <Link
+      to={`/locations/${id}`}
+      className="flex relative w-[248px] h-[324px] rounded-lg overflow-hidden cursor-pointer"
+    >
       <img className="object-cover" src={thumbnail} alt="story-img" />
       <div className="absolute bottom-0 flex justify-between w-full px-3 py-5 bg-[rgba(0,0,0,0.3)] text-white">
         <h3 className="bottom-3 left-3 font-bold">{name}</h3>
@@ -12,7 +16,7 @@ const LocationStory = ({ thumbnail, name, rating }) => {
           <span>{rating}</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

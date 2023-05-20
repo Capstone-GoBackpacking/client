@@ -193,3 +193,29 @@ export const TRIPS_OF_ACCOUNT = gql`
     }
   }
 `;
+
+export const REQUEST_JOIN_TRIP = gql`
+  query {
+    myRequest {
+      id
+      trip {
+        name
+      }
+      member {
+        email
+      }
+    }
+  }
+`;
+
+export const ACCEPT_JOIN_TRIP = gql`
+  mutation ($input: String!) {
+    acceptJoin(input: $input)
+  }
+`;
+
+export const DENIED_JOIN_TRIP = gql`
+  mutation ($input: String!) {
+    deniedJoin(input: $input)
+  }
+`;

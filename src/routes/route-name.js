@@ -9,6 +9,7 @@ export const ProfileRoute = {
     images: "images",
     trips: "trips",
     shop: "shop",
+    requests: "requests",
   },
 };
 export const TripsRoute = "trips";

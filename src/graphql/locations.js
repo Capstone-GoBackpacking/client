@@ -73,3 +73,14 @@ export const SEARCH_LOCATION = gql`
     }
   }
 `;
+
+export const TOP_LOCATION = gql`
+  query ($input: DirectionInput!) {
+    directionFavorite(input: $input) {
+      id
+      name
+      thumbnail
+      favoriteNumber
+    }
+  }
+`;
