@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { SideBarModule } from "src/components";
-import { FiLogOut } from "react-icons/fi";
+import { FiLogOut, FiLogIn } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { AUTH } from "src/graphql/auths";
@@ -9,7 +9,9 @@ const View = () => {
   const [target, setTarget] = useState(null);
   const [childs, setChilds] = useState([]);
   const navigate = useNavigate();
-  const { data: auth } = useQuery(AUTH);
+  const { data: auth } = useQuery(AUTH, {
+    fetchPolicy: "network-only",
+  });
 
   const modules = [
     {
@@ -19,6 +21,7 @@ const View = () => {
       icon: "home.svg",
       hasChild: false,
       path: "/",
+      status: "enable",
     },
     {
       id: "2",
@@ -27,6 +30,7 @@ const View = () => {
       icon: "trip.svg",
       hasChild: false,
       path: "trips",
+      status: "enable",
     },
     {
       id: "3",
@@ -35,6 +39,7 @@ const View = () => {
       icon: "location.svg",
       hasChild: false,
       path: "locations",
+      status: "enable",
     },
     {
       id: "4",
@@ -43,6 +48,7 @@ const View = () => {
       icon: "market.svg",
       hasChild: false,
       path: "market",
+      status: "enable",
     },
     {
       id: 5,
@@ -51,6 +57,7 @@ const View = () => {
       icon: "profile.svg",
       hasChild: false,
       path: `profile/${auth?.currentAccount.id}`,
+      status: auth ? "enable" : "disable",
     },
   ];
 
@@ -74,26 +81,37 @@ const View = () => {
           />
         </div>
         <div className="pr-3 flex-1">
-          {modules.map((module) => (
-            <SideBarModule
-              target={target}
-              key={module.id}
-              ckey={module.key}
-              name={module.name}
-              icon={module.icon}
-              hasChild={module.hasChild}
-              childs={childs}
-              onTarget={(e) => handleChangeTarget(e)}
-              path={module.path}
-            />
-          ))}
+          {modules
+            .filter((module) => module.status === "enable")
+            .map((module) => (
+              <SideBarModule
+                target={target}
+                key={module.id}
+                ckey={module.key}
+                name={module.name}
+                icon={module.icon}
+                hasChild={module.hasChild}
+                childs={childs}
+                onTarget={(e) => handleChangeTarget(e)}
+                path={module.path}
+              />
+            ))}
         </div>
-        <button
-          className="flex bg-primary text-white p-2 rounded-sm items-center justify-center gap-2"
-          onClick={handleLogout}
-        >
-          <FiLogOut className="w-6 h-6" /> Logout
-        </button>
+        {auth ? (
+          <button
+            className="flex bg-primary text-white p-2 rounded-sm items-center justify-center gap-2"
+            onClick={handleLogout}
+          >
+            <FiLogOut className="w-6 h-6" /> Logout
+          </button>
+        ) : (
+          <button
+            className="flex bg-lime-400 text-white p-2 rounded-sm items-center justify-center gap-2"
+            onClick={handleLogout}
+          >
+            <FiLogIn className="w-6 h-6" /> Login
+          </button>
+        )}
       </div>
     </div>
   );

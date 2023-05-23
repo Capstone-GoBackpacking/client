@@ -5,9 +5,12 @@ export const ACCOUNT = gql`
     account(input: $input) {
       email
       profile {
+        firstName
+        lastName
         fullName
         birthday
         avatar
+        genderId
       }
     }
   }

@@ -204,6 +204,7 @@ export const REQUEST_JOIN_TRIP = gql`
       member {
         email
       }
+      verify
     }
   }
 `;

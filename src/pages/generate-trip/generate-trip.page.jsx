@@ -19,7 +19,7 @@ const markerIcon = new L.Icon({
 
 const GenerateTrip = () => {
   const navigate = useNavigate();
-  const { data, loading, error } = useQuery(TRIPTYPES);
+  const { data } = useQuery(TRIPTYPES);
   const [generateTemplate] = useMutation(GENERATE_TEMPLATE);
   const [createTrip] = useMutation(CREATE_TRIP);
   const { data: locationData } = useQuery(LOCATIONS);

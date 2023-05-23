@@ -10,6 +10,7 @@ import { CreateTripRoute, GenerateTripRoute } from "src/routes/route-name";
 import { useRef, useState } from "react";
 import { Toast } from "primereact/toast";
 import { TOP_LOCATION } from "src/graphql/locations";
+import { AUTH } from "src/graphql/auths";
 
 const Trips = () => {
   const navigate = useNavigate();
@@ -22,10 +23,13 @@ const Trips = () => {
   const { data: dataL } = useQuery(TOP_LOCATION, {
     variables: {
       input: {
-        top: 5,
+        top: 4,
         direction: "desc",
       },
     },
+    fetchPolicy: "network-only",
+  });
+  const { data: auth } = useQuery(AUTH, {
     fetchPolicy: "network-only",
   });
   const [joinTrip] = useMutation(JOIN_TRIP);
@@ -50,7 +54,7 @@ const Trips = () => {
           />
         </div>
       </div>
-      <div className="flex justify-around mt-8">
+      <div className="flex justify-around mt-8 gap-3">
         {dataL?.directionFavorite?.map((location) => {
           return (
             <LocationStory
@@ -76,7 +80,9 @@ const Trips = () => {
               <ButtonPrime
                 className="w-8 h-8 bg-white rounded-full border-0"
                 icon={GrAddCircle}
-                onClick={() => navigate(`/${CreateTripRoute}`)}
+                onClick={() =>
+                  auth ? navigate(`/${CreateTripRoute}`) : navigate("/login")
+                }
               />
               <label>New Your Trip</label>
             </div>
@@ -130,12 +136,9 @@ const Trips = () => {
                                 toastRef.current.show({
                                   severity: "success",
                                   summary: "Success",
-                                  detail: "Join",
-                                  life: 3000,
+                                  detail: "Send request to join",
+                                  life: 2000,
                                 });
-                                setTimeout(() => {
-                                  navigate(`/trips/${trip.id}`);
-                                }, 3000);
                               }
                             } else {
                               navigate("/login");

@@ -51,10 +51,13 @@ const Profile = () => {
       {account && (
         <ProfileInfo
           fullName={account.account.profile.fullName}
+          firstName={account.account.profile.firstName}
+          lastName={account.account.profile.lastName}
           email={account.account.email}
           birthday={account.account.profile.birthday}
           avatar={account.account.profile.avatar}
           star={account.account.star}
+          gender={account.account.profile.genderId}
         />
       )}
       <Navbar data={navItems.filter((item) => item.status === "enable")} />
