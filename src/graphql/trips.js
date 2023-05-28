@@ -183,6 +183,8 @@ export const TRIPS_OF_ACCOUNT = gql`
       timeEnd
       timeStart
       host {
+        id
+        email
         profile {
           fullName
         }
@@ -218,5 +220,33 @@ export const ACCEPT_JOIN_TRIP = gql`
 export const DENIED_JOIN_TRIP = gql`
   mutation ($input: String!) {
     deniedJoin(input: $input)
+  }
+`;
+
+export const MY_TRIP = gql`
+  query ($input: MyTripInput!) {
+    myTrip(input: $input) {
+      id
+      name
+      thumbnail
+      locationStart {
+        name
+      }
+      locationEnd {
+        name
+      }
+      timeEnd
+      timeStart
+      host {
+        id
+        email
+        profile {
+          fullName
+        }
+      }
+      slot
+      joined
+      distance
+    }
   }
 `;

@@ -4,16 +4,20 @@ import { CiSearch } from "react-icons/ci";
 import { InputText } from "primereact/inputtext";
 import { Tree } from "primereact/tree";
 import { MyTrips as MyTripsContainer } from "src/containers";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { TRIPS_OF_ACCOUNT } from "src/graphql/trips";
+import { MY_TRIP } from "src/graphql/trips";
 
 const MyTrips = () => {
   const { profileId } = useParams();
-  const { data: trips } = useQuery(TRIPS_OF_ACCOUNT, {
+  const navigate = useNavigate();
+  const { data: myTrips } = useQuery(MY_TRIP, {
     variables: {
-      input: profileId,
+      input: {
+        accountId: profileId,
+      },
     },
+    fetchPolicy: "network-only",
   });
 
   const filterOptions = [
@@ -43,7 +47,8 @@ const MyTrips = () => {
         <div className="flex flex-1 gap-5">
           <div className="flex items-center">
             <Button
-              className="w-8 h-8 bg-white rounded-full border-0"
+              onClick={() => navigate("/create-trip")}
+              className="h-8 w-8 rounded-full border-0 bg-white"
               icon={GrAddCircle}
             />
             <label>New</label>
@@ -57,12 +62,12 @@ const MyTrips = () => {
         </div>
         <div className="flex-1"></div>
       </div>
-      <div className="flex gap-5 mt-5">
+      <div className="mt-5 flex gap-5">
         <div className="flex-1">
           <Tree value={filterOptions} />
         </div>
         <div className="flex-3">
-          <MyTripsContainer data={trips?.tripsOfHost} />
+          <MyTripsContainer data={myTrips?.myTrip} />
         </div>
       </div>
     </>

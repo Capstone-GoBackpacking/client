@@ -4,9 +4,11 @@ import { Button, StatusBox } from "..";
 import { VscCalendar } from "react-icons/vsc";
 import { GiPathDistance } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import { Button as ButtonPrime } from "primereact/button";
 
 const Trip = ({
   id,
+  name,
   thumbnail,
   from,
   to,
@@ -18,21 +20,23 @@ const Trip = ({
   verified,
   direction = "horizontal",
   distance,
+  isMy,
 }) => {
   if (direction === "horizontal") {
     return (
-      <div className="flex py-2 px-3 rounded-md drop-shadow-md bg-white gap-x-2">
+      <div className="flex gap-x-2 rounded-md bg-white py-2 px-3 drop-shadow-md">
         <img
           src={thumbnail}
           alt={`${from} - ${to}`}
-          className="w-40 h-40 object-cover flex-1"
+          className="h-40 w-40 flex-1 object-cover"
         />
         <div className="flex-2 overflow-hidden">
-          <h3 className="inline-block font-bold text-lg truncate w-11/12 cursor-pointer hover:text-primary">
+          <h3 className="inline-block w-11/12 cursor-pointer truncate text-lg font-bold hover:text-primary">
             <Link to={`/trips/${id}`}>
               From: {from} - To: {to}
             </Link>
           </h3>
+          <p>{name}</p>
           <span className="flex items-center gap-1">
             <GiPathDistance />
             <p>{distance} km</p>
@@ -55,20 +59,26 @@ const Trip = ({
           </p>
           <StatusBox status={verified} />
         </div>
+        {isMy && (
+          <div className="flex flex-col justify-evenly">
+            <ButtonPrime icon="pi pi-pencil" />
+            <ButtonPrime icon="pi pi-trash" severity={"danger"} />
+          </div>
+        )}
       </div>
     );
   }
 
   if (direction === "vertical") {
     return (
-      <div className="flex flex-col rounded-md drop-shadow-md bg-white gap-x-2 overflow-hidden">
+      <div className="flex flex-col gap-x-2 overflow-hidden rounded-md bg-white drop-shadow-md">
         <img
           src={`${thumbnail}`}
           alt={`${from} - ${to}`}
-          className="w-full h-40 object-cover"
+          className="h-40 w-full object-cover"
         />
         <div className="overflow-hidden p-3">
-          <h3 className="inline-block font-bold text-lg truncate w-11/12 cursor-pointer hover:text-primary">
+          <h3 className="inline-block w-11/12 cursor-pointer truncate text-lg font-bold hover:text-primary">
             <p className="text-base">From: {from}</p>
             <p className="text-base">To: {to}</p>
           </h3>

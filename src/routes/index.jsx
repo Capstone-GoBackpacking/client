@@ -57,7 +57,7 @@ export default createBrowserRouter(
             path={ProfileRoute.childs.trips}
             element={<ProfileMyTrips />}
           />
-          <Route path={ProfileRoute.childs.shop} element={<ProfileShop />} />
+          {/* <Route path={ProfileRoute.childs.shop} element={<ProfileShop />} /> */}
           <Route
             path={ProfileRoute.childs.requests}
             element={<ProfileRequests />}

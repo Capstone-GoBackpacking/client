@@ -5,7 +5,7 @@ import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { Calendar } from "primereact/calendar";
 import { Dropdown } from "primereact/dropdown";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { GENDERS } from "src/graphql/genders";
 import { Button as GButton } from "src/components";
 import React, { useRef } from "react";
@@ -15,9 +15,10 @@ import { ProgressBar } from "primereact/progressbar";
 import { Button } from "primereact/button";
 import { Tooltip } from "primereact/tooltip";
 import { Tag } from "primereact/tag";
-import { useDispatch } from "react-redux";
+import { UPDATE_PROFILE } from "src/graphql/accounts";
 
 const ProfileInfoContainer = ({
+  isMy,
   avatar,
   fullName,
   birthday,
@@ -27,6 +28,7 @@ const ProfileInfoContainer = ({
   lastName,
   gender,
 }) => {
+  const [updateProfileSubmit] = useMutation(UPDATE_PROFILE);
   const [showUpdateProfile, setShowUpdateProfile] = useState(false);
   const { data: genders } = useQuery(GENDERS);
   const [updateProfile, setUpdateProfile] = useState({
@@ -55,16 +57,16 @@ const ProfileInfoContainer = ({
   return (
     <>
       <div className="border-b py-5">
-        <div className="flex w-11/12 m-auto gap-x-3">
+        <div className="m-auto flex w-11/12 gap-x-3">
           <div>
             <img
               src={avatar || defaultAvatar}
-              className="w-40 h-40"
+              className="h-40 w-40 rounded-full"
               alt="avatar"
             />
           </div>
-          <div className="flex flex-col gap-3 justify-center flex-2">
-            <h2>{fullName || "Who are you?"}</h2>
+          <div className="flex flex-2 flex-col justify-center gap-3">
+            <h2>{firstName + " " + lastName || "Who are you?"}</h2>
             <p>{email}</p>
             <p>{birthday}</p>
             <div className="flex items-center">
@@ -73,12 +75,14 @@ const ProfileInfoContainer = ({
             </div>
           </div>
           <div className="flex-1">
-            <GButton
-              type="primary"
-              name="Edit Profile"
-              className="w-full py-1"
-              onClick={() => setShowUpdateProfile(true)}
-            />
+            {isMy && (
+              <GButton
+                type="primary"
+                name="Edit Profile"
+                className="w-full py-1"
+                onClick={() => setShowUpdateProfile(true)}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -91,6 +95,7 @@ const ProfileInfoContainer = ({
             <div className="flex-1">
               <label>First Name</label>
               <InputText
+                value={updateProfile.firstName}
                 className="w-full"
                 onChange={(e) =>
                   changeUpdateHandler("firstName", e.target.value)
@@ -100,6 +105,7 @@ const ProfileInfoContainer = ({
             <div className="flex-1">
               <label>Last Name</label>
               <InputText
+                value={updateProfile.lastName}
                 className="w-full"
                 onChange={(e) =>
                   changeUpdateHandler("lastName", e.target.value)
@@ -111,6 +117,7 @@ const ProfileInfoContainer = ({
             <div className="flex-1">
               <label>Birthday</label>
               <Calendar
+                value={updateProfile.birthday}
                 showIcon
                 className="w-full"
                 onChange={(e) => changeUpdateHandler("birthday", e.value)}
@@ -119,6 +126,7 @@ const ProfileInfoContainer = ({
             <div className="flex-1">
               <label>Gender</label>
               <Dropdown
+                value={updateProfile.genderId}
                 className="w-full"
                 options={genders?.genders.map((item) => ({
                   label: item.name,
@@ -133,7 +141,18 @@ const ProfileInfoContainer = ({
             <TemplateDemo onChange={(e) => changeUpdateHandler("avatar", e)} />
           </div>
           <div>
-            <Button label="Submit" severity="success" className="mr-3" />
+            <Button
+              label="Submit"
+              severity="success"
+              className="mr-3"
+              onClick={() =>
+                updateProfileSubmit({
+                  variables: {
+                    input: updateProfile,
+                  },
+                })
+              }
+            />
             <Button label="Cancel" severity="danger" />
           </div>
         </div>
@@ -148,7 +167,6 @@ function TemplateDemo({ onChange }) {
   const toast = useRef(null);
   const [totalSize, setTotalSize] = useState(0);
   const fileUploadRef = useRef(null);
-  const dispatch = useDispatch();
 
   const onTemplateSelect = (e) => {
     let _totalSize = totalSize;
@@ -173,6 +191,7 @@ function TemplateDemo({ onChange }) {
       summary: "Success",
       detail: "File Uploaded",
     });
+    onChange(JSON.parse(e.xhr.response).fileUrl);
   };
 
   const onTemplateRemove = (file, callback) => {
@@ -204,7 +223,7 @@ function TemplateDemo({ onChange }) {
         {chooseButton}
         {uploadButton}
         {cancelButton}
-        <div className="flex align-items-center gap-3 ml-auto">
+        <div className="align-items-center ml-auto flex gap-3">
           <span>{formatedValue} / 2 MB</span>
           <ProgressBar
             value={value}
@@ -218,8 +237,8 @@ function TemplateDemo({ onChange }) {
 
   const itemTemplate = (file, props) => {
     return (
-      <div className="flex align-items-center flex-wrap">
-        <div className="flex align-items-center" style={{ width: "40%" }}>
+      <div className="align-items-center flex flex-wrap">
+        <div className="align-items-center flex" style={{ width: "40%" }}>
           <img
             alt={file.name}
             role="presentation"
@@ -245,7 +264,7 @@ function TemplateDemo({ onChange }) {
 
   const emptyTemplate = () => {
     return (
-      <div className="flex align-items-center flex-column">
+      <div className="align-items-center flex-column flex">
         <i
           className="pi pi-image mt-3 p-5"
           style={{

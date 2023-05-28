@@ -36,7 +36,7 @@ const Profile = () => {
       label: "Shop",
       icon: AiTwotoneShop,
       path: `/profile/${profileId}/shop`,
-      status: "enable",
+      status: "disable",
     },
     {
       label: "Request",
@@ -47,9 +47,10 @@ const Profile = () => {
   ];
 
   return (
-    <div id="profile" className="w-11/12 m-auto">
+    <div id="profile" className="m-auto w-11/12">
       {account && (
         <ProfileInfo
+          isMy={auth.currentAccount?.id === profileId}
           fullName={account.account.profile.fullName}
           firstName={account.account.profile.firstName}
           lastName={account.account.profile.lastName}

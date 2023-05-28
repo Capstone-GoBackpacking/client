@@ -23,3 +23,9 @@ export const ASIGN_HOBBIES = gql`
     }
   }
 `;
+
+export const UPDATE_PROFILE = gql`
+  mutation ($input: UpdateProfileInput!) {
+    updateProfile(input: $input)
+  }
+`;

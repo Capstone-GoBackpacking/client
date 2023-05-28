@@ -18,6 +18,7 @@ const TripDetail = () => {
       variables: {
         id: tripId,
       },
+      fetchPolicy: "network-only",
     }
   );
 
@@ -72,7 +73,7 @@ const TripDetail = () => {
   ];
 
   return (
-    <div id="trip-detail" className="w-11/12 m-auto">
+    <div id="trip-detail" className="m-auto w-11/12">
       <ImageCarousel data={images} />
       <div className="flex gap-2">
         <div className="flex-2">
@@ -129,6 +130,7 @@ const TripDetail = () => {
             <label>Host</label>
             <div className="mt-1">
               <Member
+                memberId={data?.getTripById.host.id}
                 avatar={data?.getTripById.host.profile?.avatar}
                 name={data?.getTripById.host.profile?.fullName}
               />
@@ -141,6 +143,7 @@ const TripDetail = () => {
                 data?.getTripById.joinedMember.map((member) => (
                   <Member
                     key={member.id}
+                    memberId={member.id}
                     avatar={member.profile.avatar}
                     name={member.profile.fullName}
                   />

@@ -48,7 +48,7 @@ const View = () => {
       icon: "market.svg",
       hasChild: false,
       path: "market",
-      status: "enable",
+      status: "disable",
     },
     {
       id: 5,
