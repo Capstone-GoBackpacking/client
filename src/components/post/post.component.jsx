@@ -1,6 +1,6 @@
 import { Image } from "primereact/image";
 
-const Post = ({ avatar, hostname, content, images }) => {
+const Post = ({ avatar, hostname, content, images, time }) => {
   return (
     <div className="mt-10">
       <div className="flex items-center gap-10">
@@ -9,7 +9,12 @@ const Post = ({ avatar, hostname, content, images }) => {
           alt="avatar"
           className="h-12 w-12"
         />
-        <p>{hostname}</p>
+        <div>
+          <p>{hostname}</p>
+          <span className="text-xs">
+            {new Date(Number(time)).toLocaleTimeString()}
+          </span>
+        </div>
       </div>
       <div className="mt-2">
         <p>{content}</p>

@@ -14,6 +14,7 @@ export const CREATE_POST = gql`
       images {
         url
       }
+      time
     }
   }
 `;
@@ -42,6 +43,7 @@ export const POSTS_OF_TRIP_STRING = `
       images {
         url
       }
+      time
     }
   }
 `;

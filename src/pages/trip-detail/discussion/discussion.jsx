@@ -49,6 +49,7 @@ const PostDiscussion = ({ post }) => {
         hostname={post.author.profile.fullName}
         content={post.content}
         images={post?.images.map((item) => item.url)}
+        time={post?.time}
       />
       <div className="mt-2">
         <div className="flex items-center gap-2">
@@ -283,9 +284,13 @@ const Discussion = () => {
           />
         </div>
         <div>
-          {posts.map((post) => {
-            return <PostDiscussion key={post.id} post={post} />;
-          })}
+          {posts
+            .slice()
+            .sort((a, b) => b.time - a.time)
+            .map((post) => {
+              console.log(posts);
+              return <PostDiscussion key={post.id} post={post} />;
+            })}
         </div>
       </div>
       <Dialog
