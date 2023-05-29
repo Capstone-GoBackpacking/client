@@ -288,7 +288,6 @@ const Discussion = () => {
             .slice()
             .sort((a, b) => b.time - a.time)
             .map((post) => {
-              console.log(posts);
               return <PostDiscussion key={post.id} post={post} />;
             })}
         </div>

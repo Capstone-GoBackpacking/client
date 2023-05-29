@@ -12,7 +12,7 @@ const TripDetail = () => {
   const { tripId } = useParams();
   const navigate = useNavigate();
 
-  const { data, loading, error } = useQuery(
+  const { data } = useQuery(
     localStorage.getItem("access_token") ? GET_TRIP : GET_TRIP_WITHOUT_AUTH,
     {
       variables: {
@@ -29,33 +29,6 @@ const TripDetail = () => {
       navigate(`/trips/${tripId}/images`);
     }
   }, [data]);
-
-  const images = [
-    {
-      id: "1",
-      url: "https://www.shutterstock.com/image-photo/one-person-breaks-formation-violation-260nw-1940349595.jpg",
-    },
-    {
-      id: "2",
-      url: "https://www.shutterstock.com/image-photo/one-person-breaks-formation-violation-260nw-1940349595.jpg",
-    },
-    {
-      id: "3",
-      url: "https://www.shutterstock.com/image-photo/one-person-breaks-formation-violation-260nw-1940349595.jpg",
-    },
-    {
-      id: "4",
-      url: "https://www.shutterstock.com/image-photo/one-person-breaks-formation-violation-260nw-1940349595.jpg",
-    },
-    {
-      id: "5",
-      url: "https://www.shutterstock.com/image-photo/one-person-breaks-formation-violation-260nw-1940349595.jpg",
-    },
-    {
-      id: "6",
-      url: "https://www.shutterstock.com/image-photo/one-person-breaks-formation-violation-260nw-1940349595.jpg",
-    },
-  ];
 
   const navItems = [
     {
@@ -74,7 +47,13 @@ const TripDetail = () => {
 
   return (
     <div id="trip-detail" className="m-auto w-11/12">
-      <ImageCarousel data={images} />
+      {data?.getTripById.posts && (
+        <ImageCarousel
+          data={data?.getTripById.posts.reduce((prev, next) => {
+            return [...prev, ...next?.images];
+          }, [])}
+        />
+      )}
       <div className="flex gap-2">
         <div className="flex-2">
           {data?.getTripById && (

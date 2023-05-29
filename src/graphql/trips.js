@@ -96,6 +96,12 @@ export const GET_TRIP = gql`
         }
       }
       distance
+      posts {
+        images {
+          id
+          url
+        }
+      }
     }
   }
 `;
@@ -135,6 +141,12 @@ export const GET_TRIP_WITHOUT_AUTH = gql`
         }
       }
       distance
+      posts {
+        images {
+          id
+          url
+        }
+      }
     }
   }
 `;

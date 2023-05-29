@@ -3,12 +3,12 @@ import { Image } from "primereact/image";
 const ImagesContainer = ({ data }) => {
   return (
     <>
-      {data.map((image) => (
+      {data?.map((image) => (
         <Image
-          className="h-40 md:h-80 rounded-md overflow-hidden"
+          className="h-40 overflow-hidden rounded-md md:h-80"
           key={image.id}
-          src={image.src}
-          alt={image.name}
+          src={image.url}
+          alt={image.id}
           preview
         />
       ))}
