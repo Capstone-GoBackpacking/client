@@ -11,6 +11,9 @@ export const CREATE_POST = gql`
           fullName
         }
       }
+      images {
+        url
+      }
     }
   }
 `;
@@ -35,6 +38,9 @@ export const POSTS_OF_TRIP_STRING = `
             fullName
           }
         }
+      }
+      images {
+        url
       }
     }
   }
