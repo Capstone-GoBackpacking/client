@@ -22,7 +22,7 @@ const MyTrips = ({ data }) => {
             timeEnd={trip.timeEnd}
             host={trip.host.profile.fullName}
             slot={trip.slot}
-            joined={trip.joined}
+            joined={trip.joinedMember.length}
             verified={trip.verified}
             distance={trip.distance}
             isMy={trip.host.id === auth.currentAccount?.id}

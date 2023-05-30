@@ -11,12 +11,15 @@ import createTripSelector from "src/redux/reducers/create-trip/create-trip.selec
 import { useMutation } from "@apollo/client";
 import { CREATE_TRIP } from "src/graphql/trips";
 import Upload from "./upload/upload";
+import { Toast } from "primereact/toast";
+import { useRef } from "react";
 
 const CreateTrip = () => {
   const { type, from, to, start, end, name, slot, description, thumbnail } =
     useSelector(createTripSelector);
 
-  const [createTrip, { data, loading, error }] = useMutation(CREATE_TRIP);
+  const toast = useRef();
+  const [createTrip] = useMutation(CREATE_TRIP);
 
   const events = [
     {
@@ -44,7 +47,7 @@ const CreateTrip = () => {
   const customizedMarker = (item) => {
     return (
       <span
-        className={`flex w-10 h-10 rounded-full items-center justify-center`}
+        className={`flex h-10 w-10 items-center justify-center rounded-full`}
         style={{ backgroundColor: item.color }}
       >
         <item.Icon className="text-white" />
@@ -55,31 +58,45 @@ const CreateTrip = () => {
   const customizedContent = (item) => {
     return (
       <div className="my-5">
-        <item.Element />
+        <item.Element haha={true} />
       </div>
     );
   };
 
-  const handleSubmitCreateTrip = () => {
-    createTrip({
-      variables: {
-        input: {
-          typeId: type,
-          locationEndId: to,
-          locationStartId: from,
-          slot: slot,
-          timeStart: start,
-          timeEnd: end,
-          name: name,
-          thumbnail: thumbnail,
-          description: description,
+  const handleSubmitCreateTrip = async () => {
+    try {
+      await createTrip({
+        variables: {
+          input: {
+            typeId: type,
+            locationEndId: to,
+            locationStartId: from,
+            slot: slot,
+            timeStart: start,
+            timeEnd: end,
+            name: name,
+            thumbnail: thumbnail,
+            description: description,
+          },
         },
-      },
-    });
+      });
+      toast.current.show({
+        severity: "success",
+        summary: "Success",
+        detail: "Create Trip Success",
+      });
+    } catch (error) {
+      toast.current.show({
+        severity: "error",
+        summary: "Failed",
+        detail: "Create Trip Failed",
+      });
+    }
   };
 
   return (
-    <div className="my-10 w-11/12 m-auto">
+    <div className="m-auto my-10 w-11/12">
+      <Toast ref={toast} />
       <div id="create-trip" className="">
         <Timeline
           value={events}
@@ -91,7 +108,7 @@ const CreateTrip = () => {
         <Button
           type="primary"
           name="Create trip"
-          className="px-4 py-2 float-right"
+          className="float-right px-4 py-2"
           onClick={handleSubmitCreateTrip}
         />
       </div>

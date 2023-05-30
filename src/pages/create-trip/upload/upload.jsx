@@ -32,8 +32,14 @@ export default function TemplateDemo() {
     });
 
     setTotalSize(_totalSize);
-    toast.current.show({ severity: "info", summary: "Success", detail: "File Uploaded" });
-    dispatch(setValue({ key: "thumbnail", value: JSON.parse(e.xhr.response).fileUrl }));
+    toast.current.show({
+      severity: "info",
+      summary: "Success",
+      detail: "File Uploaded",
+    });
+    dispatch(
+      setValue({ key: "thumbnail", value: JSON.parse(e.xhr.response).fileUrl })
+    );
   };
 
   const onTemplateRemove = (file, callback) => {
@@ -48,16 +54,30 @@ export default function TemplateDemo() {
   const headerTemplate = (options) => {
     const { className, chooseButton, uploadButton, cancelButton } = options;
     const value = totalSize / 10000;
-    const formatedValue = fileUploadRef && fileUploadRef.current ? fileUploadRef.current.formatSize(totalSize) : "0 B";
+    const formatedValue =
+      fileUploadRef && fileUploadRef.current
+        ? fileUploadRef.current.formatSize(totalSize)
+        : "0 B";
 
     return (
-      <div className={className} style={{ backgroundColor: "transparent", display: "flex", alignItems: "center" }}>
+      <div
+        className={className}
+        style={{
+          backgroundColor: "transparent",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
         {chooseButton}
         {uploadButton}
         {cancelButton}
-        <div className="flex align-items-center gap-3 ml-auto">
+        <div className="align-items-center ml-auto flex gap-3">
           <span>{formatedValue} / 2 MB</span>
-          <ProgressBar value={value} showValue={false} style={{ width: "10rem", height: "12px" }}></ProgressBar>
+          <ProgressBar
+            value={value}
+            showValue={false}
+            style={{ width: "10rem", height: "12px" }}
+          ></ProgressBar>
         </div>
       </div>
     );
@@ -65,11 +85,21 @@ export default function TemplateDemo() {
 
   const itemTemplate = (file, props) => {
     return (
-      <div className="flex align-items-center flex-wrap">
-        <div className="flex align-items-center" style={{ width: "40%" }}>
-          <img alt={file.name} role="presentation" src={file.objectURL} width={100} height={100} />
+      <div className="align-items-center flex flex-wrap">
+        <div className="align-items-center flex" style={{ width: "40%" }}>
+          <img
+            alt={file.name}
+            role="presentation"
+            src={file.objectURL}
+            width={100}
+            height={100}
+          />
         </div>
-        <Tag value={props.formatSize} severity="warning" className="px-3 py-2" />
+        <Tag
+          value={props.formatSize}
+          severity="warning"
+          className="px-3 py-2"
+        />
         <Button
           type="button"
           icon="pi pi-times"
@@ -82,7 +112,7 @@ export default function TemplateDemo() {
 
   const emptyTemplate = () => {
     return (
-      <div className="flex align-items-center flex-column">
+      <div className="align-items-center flex-column flex">
         <i
           className="pi pi-image mt-3 p-5"
           style={{
@@ -92,7 +122,10 @@ export default function TemplateDemo() {
             color: "var(--surface-d)",
           }}
         ></i>
-        <span style={{ fontSize: "1.2em", color: "var(--text-color-secondary)" }} className="my-5">
+        <span
+          style={{ fontSize: "1.2em", color: "var(--text-color-secondary)" }}
+          className="my-5"
+        >
           Drag and Drop Image Here
         </span>
       </div>
@@ -107,12 +140,14 @@ export default function TemplateDemo() {
   const uploadOptions = {
     icon: "pi pi-fw pi-cloud-upload",
     iconOnly: true,
-    className: "custom-upload-btn p-button-success p-button-rounded p-button-outlined",
+    className:
+      "custom-upload-btn p-button-success p-button-rounded p-button-outlined",
   };
   const cancelOptions = {
     icon: "pi pi-fw pi-times",
     iconOnly: true,
-    className: "custom-cancel-btn p-button-danger p-button-rounded p-button-outlined",
+    className:
+      "custom-cancel-btn p-button-danger p-button-rounded p-button-outlined",
   };
 
   return (

@@ -259,6 +259,9 @@ export const MY_TRIP = gql`
       slot
       joined
       distance
+      joinedMember {
+        id
+      }
     }
   }
 `;

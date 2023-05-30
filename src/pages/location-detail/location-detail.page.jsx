@@ -22,8 +22,9 @@ const LocationDetail = () => {
   const dispatch = useDispatch();
   const { target, isFavorited } = useSelector(locationsSelector);
 
-  const { data, loading, error } = useQuery(GET_LOCATION, {
+  const { data } = useQuery(GET_LOCATION, {
     variables: { id: locationId },
+    fetchPolicy: "network-only",
   });
 
   const [favoriting] = useMutation(FAVORITE);
@@ -60,35 +61,6 @@ const LocationDetail = () => {
     {
       id: "6",
       url: "https://www.shutterstock.com/image-photo/one-person-breaks-formation-violation-260nw-1940349595.jpg",
-    },
-  ];
-
-  const relateTrips = [
-    {
-      id: "1",
-      name: "hahahahahahah",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro rem aliquid officiis maxime quidem tempore ducimus",
-      host: "Le Viet Anh",
-      joined: 2,
-      limit: 4,
-      from: "this is from",
-      to: "this is to",
-      thumbnail:
-        "https://www.shutterstock.com/image-photo/one-person-breaks-formation-violation-260nw-1940349595.jpg",
-    },
-    {
-      id: "2",
-      name: "hahahahahahah",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro rem aliquid officiis maxime quidem tempore ducimus",
-      host: "Le Viet Anh",
-      joined: 2,
-      limit: 4,
-      from: "this is from",
-      to: "this is to",
-      thumbnail:
-        "https://www.shutterstock.com/image-photo/one-person-breaks-formation-violation-260nw-1940349595.jpg",
     },
   ];
 
@@ -131,7 +103,7 @@ const LocationDetail = () => {
   const handleShare = () => {};
 
   return (
-    <div id="location-detail" className="w-11/12 m-auto">
+    <div id="location-detail" className="m-auto w-11/12">
       <ImageCarousel data={images} />
       <div className="flex gap-2">
         <div className="flex-2">
@@ -168,8 +140,14 @@ const LocationDetail = () => {
           <div className="mt-5">
             <label>Relate trips</label>
             <div>
-              {relateTrips.map((trip) => (
-                <div key={trip.id} className="mt-4 shadow-md bg-white">
+              {target?.trips?.map((trip) => (
+                <div
+                  key={trip.id}
+                  className="mt-4 cursor-pointer bg-white shadow-md"
+                  onClick={() => {
+                    navigate(`/trips/${trip.id}`);
+                  }}
+                >
                   <div className="flex gap-2 p-2">
                     <img
                       src={trip.thumbnail}
@@ -178,9 +156,12 @@ const LocationDetail = () => {
                     />
                     <div>
                       <p className="font-bold">{trip.name}</p>
-                      <p>{trip.host}</p>
+                      <p>
+                        {trip.host.profile.firstName}{" "}
+                        {trip.host.profile.lastName}
+                      </p>
                       <span>
-                        {trip.joined} / {trip.limit}
+                        {trip.joinedMember.length} / {trip.slot}
                       </span>
                     </div>
                   </div>

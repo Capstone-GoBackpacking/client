@@ -27,20 +27,21 @@ const TripTemplate = ({
             <p>From: {fromName}</p>
             <p>To: {toName}</p>
             <p>
-              <GiPathDistance className="inline-block mr-2" />
+              <GiPathDistance className="mr-2 inline-block" />
               {distance} km
             </p>
             <p>
-              <BsFillPeopleFill className="inline-block mr-2" />
+              <BsFillPeopleFill className="mr-2 inline-block" />
               {slot}
             </p>
             <p>
-              <AiFillCalendar className="inline-block mr-2" />
-              {timeStart} - {timeEnd}
+              <AiFillCalendar className="mr-2 inline-block" />
+              {new Date(Number(timeStart)).toLocaleTimeString()} -{" "}
+              {new Date(Number(timeEnd)).toLocaleTimeString()}
             </p>
           </div>
           <div>
-            <p className="text-primary font-medium text-center mb-2">{type}</p>
+            <p className="mb-2 text-center font-medium text-primary">{type}</p>
             <Button
               type="primary"
               name="Create"
@@ -54,7 +55,7 @@ const TripTemplate = ({
             center={[16.075319, 108.156435]}
             zoom={13}
             scrollWheelZoom={true}
-            className="w-full h-full"
+            className="h-full w-full"
           >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

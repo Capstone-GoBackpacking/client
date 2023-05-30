@@ -26,6 +26,21 @@ export const GET_LOCATION = gql`
         id
         name
       }
+      trips {
+        id
+        thumbnail
+        name
+        host {
+          profile {
+            lastName
+            firstName
+          }
+        }
+        slot
+        joinedMember {
+          id
+        }
+      }
     }
   }
 `;
@@ -41,6 +56,21 @@ export const GET_LOCATION_STRING = `
       tags {
         id
         name
+      }
+      trips {
+        id
+        thumbnail
+        name
+        host {
+          profile {
+            lastName
+            firstName
+          }
+        }
+        slot
+        joinedMember {
+          id
+        }
       }
     }
   }
@@ -82,5 +112,11 @@ export const TOP_LOCATION = gql`
       thumbnail
       favoriteNumber
     }
+  }
+`;
+
+export const PERMISSION_REVIEW = gql`
+  query ($input: String!) {
+    permissionReview(input: $input)
   }
 `;

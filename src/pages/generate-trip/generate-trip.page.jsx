@@ -3,7 +3,7 @@ import { MyMap } from "src/containers";
 import { useMutation, useQuery } from "@apollo/client";
 import { TRIPTYPES } from "src/graphql/trip-types";
 import TripType from "src/components/tripType/tripType.component";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button, TripTemplate } from "src/components";
 import { LOCATIONS } from "src/graphql/locations";
 import { Marker, Popup } from "react-leaflet";
@@ -11,6 +11,7 @@ import { CREATE_TRIP, GENERATE_TEMPLATE } from "src/graphql/trips";
 import L from "leaflet";
 import markerIconSVG from "/assets/images/icons/map-marker.svg";
 import { useNavigate } from "react-router-dom";
+import { Toast } from "primereact/toast";
 
 const markerIcon = new L.Icon({
   iconUrl: markerIconSVG,
@@ -29,6 +30,7 @@ const GenerateTrip = () => {
     currentLocation: "",
   });
   const [templates, setTemplates] = useState([]);
+  const toastRef = useRef();
 
   const onSelected = (id) => {
     setGenerateInput((state) => ({ ...state, type: id }));
@@ -41,8 +43,19 @@ const GenerateTrip = () => {
           input: generateInput,
         },
       });
-      if (data) {
+      if (data?.generateTemplate.length > 0) {
+        toastRef.current.show({
+          severity: "info",
+          summary: "Success",
+          detail: "Generated Templates",
+        });
         setTemplates(data.generateTemplate);
+      } else {
+        toastRef.current.show({
+          severity: "",
+          summary: "Success",
+          detail: "Generated Templates",
+        });
       }
     } catch (error) {}
   };
@@ -63,17 +76,27 @@ const GenerateTrip = () => {
           },
         },
       });
-      navigate(`/trips/${data.createTrip.id}`);
+      if (data) {
+        toastRef.current.show({
+          severity: "success",
+          summary: "Success",
+          detail: "Generate New Trip",
+        });
+        setTimeout(() => {
+          navigate(`/trips/${data.createTrip.id}`);
+        }, 1000);
+      }
     } catch (error) {}
   };
 
   return (
-    <div className="w-11/12 m-auto flex py-10">
+    <div className="m-auto flex w-11/12 py-10">
+      <Toast ref={toastRef} />
       <div className="flex-1">
-        <div className="w-11/12 m-auto">
+        <div className="m-auto w-11/12">
           <div className="mt-5">
             <label className="font-medium">Current Location</label>
-            <div className="h-80 mt-4">
+            <div className="mt-4 h-80">
               <MyMap>
                 {locationData &&
                   locationData.locations.map((location) => (
@@ -98,7 +121,7 @@ const GenerateTrip = () => {
             </div>
           </div>
           <div className="mt-5">
-            <label className="block mb-4 font-medium">Distance</label>
+            <label className="mb-4 block font-medium">Distance</label>
             <InputNumber
               min={0}
               className="w-full"
@@ -112,7 +135,7 @@ const GenerateTrip = () => {
           </div>
           <div className="mt-5">
             <label className="font-medium">Type Of Trip</label>
-            <div className="grid grid-cols-2 gap-10 mt-4">
+            <div className="mt-4 grid grid-cols-2 gap-10">
               {data?.types &&
                 data.types.map((item) => (
                   <TripType
@@ -138,7 +161,7 @@ const GenerateTrip = () => {
         </div>
       </div>
       <div className="flex-1">
-        <div className="w-11/12 m-auto">
+        <div className="m-auto w-11/12">
           <div className="flex flex-col gap-5">
             {templates.map((template) => (
               <TripTemplate

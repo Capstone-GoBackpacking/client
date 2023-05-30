@@ -38,23 +38,23 @@ const Trips = () => {
   const toastRef = useRef(null);
 
   return (
-    <div className="w-11/12 m-auto">
+    <div className="m-auto w-11/12">
       <Toast ref={toastRef} />
-      <div className="flex justify-between mt-10">
+      <div className="mt-10 flex justify-between">
         <div>
-          <h2 className="font-bold mb-2">Hello, Viet Anh Le!</h2>
+          <h2 className="mb-2 font-bold">Hello, Viet Anh Le!</h2>
           <span>Welcome back and explore the world</span>
         </div>
         <div className="flex items-center">
-          <CiSearch className="h-6 w-6 mr-4" />
+          <CiSearch className="mr-4 h-6 w-6" />
           <InputText
-            className="pt-1 w-96"
+            className="w-96 pt-1"
             value={inputSearch}
             onChange={(e) => setInputSearch(e.target.value)}
           />
         </div>
       </div>
-      <div className="flex justify-around mt-8 gap-3">
+      <div className="mt-8 flex justify-around gap-3">
         {dataL?.directionFavorite?.map((location) => {
           return (
             <LocationStory
@@ -67,7 +67,7 @@ const Trips = () => {
           );
         })}
       </div>
-      <div className="rounded-md shadow-md mt-4">
+      <div className="mt-4 rounded-md shadow-md">
         <div className="p-4">
           <div className="flex gap-10">
             <div>
@@ -78,7 +78,7 @@ const Trips = () => {
             </div>
             <div className="flex items-center">
               <ButtonPrime
-                className="w-8 h-8 bg-white rounded-full border-0"
+                className="h-8 w-8 rounded-full border-0 bg-white"
                 icon={GrAddCircle}
                 onClick={() =>
                   auth ? navigate(`/${CreateTripRoute}`) : navigate("/login")
@@ -88,7 +88,7 @@ const Trips = () => {
             </div>
             <div className="flex items-center">
               <ButtonPrime
-                className="w-8 h-8 bg-white rounded-full border-0"
+                className="h-8 w-8 rounded-full border-0 bg-white"
                 icon={GrTemplate}
                 onClick={() => navigate(`/${GenerateTripRoute}`)}
               />
@@ -101,14 +101,14 @@ const Trips = () => {
                 <div key={trip.id} className="mb-3">
                   <div className="flex">
                     <img
-                      className="w-40 h-32"
+                      className="h-32 w-40"
                       src={
                         trip.thumbnail || "/assets/images/defaults/trip.jpeg"
                       }
                       alt={trip.id}
                     />
-                    <div className="flex-2 ml-3">
-                      <p className="font-bold text-xl">{trip.name}</p>
+                    <div className="ml-3 flex-2">
+                      <p className="text-xl font-bold">{trip.name}</p>
                       <p>
                         From: {trip.locationStart.name} - To:{" "}
                         {trip.locationEnd.name}
@@ -119,24 +119,33 @@ const Trips = () => {
                         {new Date(Number(trip.timeEnd)).toLocaleString()}
                       </p>
                     </div>
-                    <div className="flex-1 flex flex-col items-center justify-evenly">
+                    <div className="flex flex-1 flex-col items-center justify-evenly">
                       {trip.isHost || trip.targetJoined || (
                         <Button
                           type="primary"
                           name="Join"
-                          className="p-2 w-32"
+                          className="w-32 p-2"
                           onClick={async () => {
                             if (localStorage.getItem("access_token")) {
-                              const response = await joinTrip({
-                                variables: {
-                                  input: trip.id,
-                                },
-                              });
-                              if (response.data) {
+                              try {
+                                const response = await joinTrip({
+                                  variables: {
+                                    input: trip.id,
+                                  },
+                                });
+                                if (response.data) {
+                                  toastRef.current.show({
+                                    severity: "success",
+                                    summary: "Success",
+                                    detail: "Send request to join",
+                                    life: 2000,
+                                  });
+                                }
+                              } catch (error) {
                                 toastRef.current.show({
-                                  severity: "success",
-                                  summary: "Success",
-                                  detail: "Send request to join",
+                                  severity: "error",
+                                  summary: "Error",
+                                  detail: error.message,
                                   life: 2000,
                                 });
                               }
@@ -149,7 +158,7 @@ const Trips = () => {
                       <Button
                         type="primary"
                         name="Detail"
-                        className="p-2 w-32"
+                        className="w-32 p-2"
                         onClick={() => navigate(`/trips/${trip.id}`)}
                       />
                     </div>
