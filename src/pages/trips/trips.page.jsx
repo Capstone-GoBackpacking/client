@@ -42,7 +42,10 @@ const Trips = () => {
       <Toast ref={toastRef} />
       <div className="mt-10 flex justify-between">
         <div>
-          <h2 className="mb-2 font-bold">Hello, Viet Anh Le!</h2>
+          <h2 className="mb-2 font-bold">
+            Hello, {auth?.currentAccount?.profile.firstName} <span> </span>
+            {auth?.currentAccount?.profile.lastName}!
+          </h2>
           <span>Welcome back and explore the world</span>
         </div>
         <div className="flex items-center">
@@ -67,7 +70,7 @@ const Trips = () => {
           );
         })}
       </div>
-      <div className="mt-4 rounded-md shadow-md">
+      <div className="mt-4 rounded-md bg-white shadow-md">
         <div className="p-4">
           <div className="flex gap-10">
             <div>

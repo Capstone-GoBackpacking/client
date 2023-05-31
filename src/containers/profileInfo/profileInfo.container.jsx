@@ -27,6 +27,7 @@ const ProfileInfoContainer = ({
   firstName,
   lastName,
   gender,
+  hobbies,
 }) => {
   const [updateProfileSubmit] = useMutation(UPDATE_PROFILE);
   const [showUpdateProfile, setShowUpdateProfile] = useState(false);
@@ -72,6 +73,13 @@ const ProfileInfoContainer = ({
             <div className="flex items-center">
               <AiFillStar className="text-yellow-300" />
               <span>{star || 0}</span>
+            </div>
+            <div className="flex w-2/3 gap-2 overflow-auto">
+              {hobbies.map((hobby) => (
+                <span className="rounded border p-2" key={hobby.id}>
+                  {hobby.name}
+                </span>
+              ))}
             </div>
           </div>
           <div className="flex-1">

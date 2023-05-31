@@ -59,6 +59,7 @@ const Profile = () => {
           avatar={account.account.profile.avatar}
           star={account.account.star}
           gender={account.account.profile.genderId}
+          hobbies={account.account.hobbies}
         />
       )}
       <Navbar data={navItems.filter((item) => item.status === "enable")} />

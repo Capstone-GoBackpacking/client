@@ -15,7 +15,7 @@ const LocationListingContainer = ({
   const [nameSearch, setNameSearch] = useState("");
 
   return (
-    <div className="grid grid-cols-1">
+    <div className="grid grid-cols-1 bg-white">
       <div className="flex gap-x-2">
         <div className="flex flex-2 items-center gap-x-5 overflow-x-auto">
           {tags?.map((tag) => {

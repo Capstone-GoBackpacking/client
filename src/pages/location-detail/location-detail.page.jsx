@@ -120,7 +120,7 @@ const LocationDetail = () => {
             />
           )}
           <Navbar data={navItems} />
-          <div className="mt-5">
+          <div className="mt-5 bg-white">
             <Outlet />
           </div>
         </div>

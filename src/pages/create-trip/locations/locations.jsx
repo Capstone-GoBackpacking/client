@@ -28,9 +28,9 @@ const Locations = () => {
   };
 
   return (
-    <div className="bg-white rounded-md shadow-md p-4">
+    <div className="rounded-md bg-white p-4 shadow-md">
       <div className="flex flex-col gap-3 md:gap-5">
-        <div className="flex flex-col md:flex-row gap-3 md:gap-5">
+        <div className="flex flex-col gap-3 md:flex-row md:gap-5">
           <div className="flex-1">
             <label htmlFor="from-location" className="font-bold">
               From
@@ -52,7 +52,7 @@ const Locations = () => {
             />
           </div>
         </div>
-        <div className="flex flex-col md:flex-row gap-3 md:gap-5">
+        <div className="flex flex-col gap-3 md:flex-row md:gap-5">
           <div className="flex-1">
             <label htmlFor="start-time" className="font-bold">
               Start

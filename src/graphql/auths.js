@@ -4,6 +4,10 @@ export const AUTH = gql`
   query {
     currentAccount {
       id
+      profile {
+        firstName
+        lastName
+      }
     }
   }
 `;

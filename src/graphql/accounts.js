@@ -12,6 +12,10 @@ export const ACCOUNT = gql`
         avatar
         genderId
       }
+      hobbies {
+        id
+        name
+      }
     }
   }
 `;
