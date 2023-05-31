@@ -52,9 +52,9 @@ const GenerateTrip = () => {
         setTemplates(data.generateTemplate);
       } else {
         toastRef.current.show({
-          severity: "",
-          summary: "Success",
-          detail: "Generated Templates",
+          severity: "error",
+          summary: "Error",
+          detail: "No Generated Templates",
         });
       }
     } catch (error) {}

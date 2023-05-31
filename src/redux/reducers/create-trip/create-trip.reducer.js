@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { setValue as setValueAction } from "./create-trip.action";
+import {
+  setValue as setValueAction,
+  resetValue as resetValueAction,
+} from "./create-trip.action";
 
 const initialState = {
   type: "",
@@ -18,9 +21,10 @@ export const createTripSlice = createSlice({
   initialState,
   reducers: {
     setValue: setValueAction,
+    resetValue: resetValueAction,
   },
 });
 
-export const { setValue } = createTripSlice.actions;
+export const { setValue, resetValue } = createTripSlice.actions;
 
 export default createTripSlice.reducer;

@@ -14,13 +14,14 @@ const Description = () => {
   };
 
   return (
-    <div className="bg-white shadow-md p-4 rounded-md">
+    <div className="rounded-md bg-white p-4 shadow-md">
       <div className="flex flex-col gap-3 md:gap-5">
         <div>
           <label htmlFor="name" className="font-bold">
             Name Your Trip
           </label>
           <InputText
+            maxLength={20}
             id="name"
             className="w-full"
             value={name}
@@ -33,6 +34,7 @@ const Description = () => {
               Limit Slot
             </label>
             <InputNumber
+              min={1}
               id="slot"
               className="w-full"
               value={slot}

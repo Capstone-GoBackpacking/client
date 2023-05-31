@@ -6,18 +6,20 @@ import TripTypes from "./tripTypes/tripTypes";
 import Locations from "./locations/locations";
 import Description from "./description/description";
 import { Button } from "src/components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import createTripSelector from "src/redux/reducers/create-trip/create-trip.selector";
 import { useMutation } from "@apollo/client";
 import { CREATE_TRIP } from "src/graphql/trips";
 import Upload from "./upload/upload";
 import { Toast } from "primereact/toast";
 import { useRef } from "react";
+import { resetValue } from "src/redux/reducers/create-trip/create-trip.reducer";
 
 const CreateTrip = () => {
   const { type, from, to, start, end, name, slot, description, thumbnail } =
     useSelector(createTripSelector);
 
+  const dispatch = useDispatch();
   const toast = useRef();
   const [createTrip] = useMutation(CREATE_TRIP);
 
@@ -85,6 +87,7 @@ const CreateTrip = () => {
         summary: "Success",
         detail: "Create Trip Success",
       });
+      dispatch(resetValue());
     } catch (error) {
       toast.current.show({
         severity: "error",

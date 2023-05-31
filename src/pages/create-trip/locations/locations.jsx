@@ -26,6 +26,7 @@ const Locations = () => {
   const handleSetValue = (key, value) => {
     dispatch(setValue({ key, value }));
   };
+  console.log(Date(from));
 
   return (
     <div className="rounded-md bg-white p-4 shadow-md">
@@ -58,6 +59,7 @@ const Locations = () => {
               Start
             </label>
             <Calendar
+              minDate={new Date()}
               id="start-time"
               showIcon
               showTime
@@ -72,6 +74,7 @@ const Locations = () => {
               End
             </label>
             <Calendar
+              minDate={new Date(start)}
               id="end-time"
               showIcon
               showTime
