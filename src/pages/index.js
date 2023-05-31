@@ -17,6 +17,7 @@ import TripDetailImages from "./trip-detail/images/images";
 import TripDetailDiscussion from "./trip-detail/discussion/discussion";
 import GenerateTrip from "./generate-trip/generate-trip.page";
 import ProfileRequests from "./profile/requests/request";
+import ContributeLocation from "./contribute-location/contributeLocation.page";
 
 export {
   Login,
@@ -38,4 +39,5 @@ export {
   TripDetailDiscussion,
   GenerateTrip,
   ProfileRequests,
+  ContributeLocation,
 };

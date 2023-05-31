@@ -21,7 +21,7 @@ const View = () => {
       icon: "home.svg",
       hasChild: false,
       path: "/",
-      status: "enable",
+      status: "disable",
     },
     {
       id: "2",
@@ -71,16 +71,16 @@ const View = () => {
   };
 
   return (
-    <div className="fixed flex md:top-0 z-0 opacity-100 w-full transition-all duration-300 md:sticky md:h-screen md:w-auto md:min-w-min">
-      <div className="md:w-64 pl-3 md:pl-8 py-4 flex flex-col">
-        <div className="pl-5 py-2 md:py-4">
+    <div className="fixed z-0 flex w-full opacity-100 transition-all duration-300 md:sticky md:top-0 md:h-screen md:w-auto md:min-w-min">
+      <div className="flex flex-col py-4 pl-3 md:w-64 md:pl-8">
+        <div className="py-2 pl-5 md:py-4">
           <img
             src="/assets/images/logo.png"
             alt="logo"
-            className="hidden md:block w-32"
+            className="hidden w-32 md:block"
           />
         </div>
-        <div className="pr-3 flex-1">
+        <div className="flex-1 pr-3">
           {modules
             .filter((module) => module.status === "enable")
             .map((module) => (
@@ -99,17 +99,17 @@ const View = () => {
         </div>
         {auth ? (
           <button
-            className="flex bg-primary text-white p-2 rounded-sm items-center justify-center gap-2"
+            className="flex items-center justify-center gap-2 rounded-sm bg-primary p-2 text-white"
             onClick={handleLogout}
           >
-            <FiLogOut className="w-6 h-6" /> Logout
+            <FiLogOut className="h-6 w-6" /> Logout
           </button>
         ) : (
           <button
-            className="flex bg-lime-400 text-white p-2 rounded-sm items-center justify-center gap-2"
+            className="flex items-center justify-center gap-2 rounded-sm bg-lime-400 p-2 text-white"
             onClick={handleLogout}
           >
-            <FiLogIn className="w-6 h-6" /> Login
+            <FiLogIn className="h-6 w-6" /> Login
           </button>
         )}
       </div>

@@ -30,3 +30,4 @@ export const TripDetailRoute = {
   },
 };
 export const GenerateTripRoute = "generate-trip";
+export const ContributeLocationRoute = "contribute-location";
